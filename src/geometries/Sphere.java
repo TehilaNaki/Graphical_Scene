@@ -4,7 +4,7 @@ import primitives.Point3D;
 import primitives.Vector;
 /**
  * Sphere class represent a three-dimensional Sphere with a center point and radius
- * @author TehilaNaki & MeravYzhaki
+ * @author TehilaNaki & MeravIzhaki
  */
 public class Sphere implements Geometry{
 

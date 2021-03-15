@@ -3,7 +3,7 @@ package geometries;
 import primitives.Point3D;
 /**
  * Triangle class represent a three-dimensional triangle- inherited from Polygon
- * @author TehilaNaki & MeravYzhaki
+ * @author TehilaNaki & MeravIzhaki
  */
 
 public class Triangle extends Polygon{

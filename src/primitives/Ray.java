@@ -4,7 +4,7 @@ import java.util.Objects;
 /**
  * Class Ray is the basic class representing a ray
  * point3D is the start point, Vector is the direction.
- * @author TehilaNaki and MeravYzhaki
+ * @author TehilaNaki and MeravIzhaki
  */
 public class Ray
 {

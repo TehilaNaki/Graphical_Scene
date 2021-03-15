@@ -1,10 +1,12 @@
 package com.project151055;
-
 import primitives.*;
 import static java.lang.System.out;
 import static primitives.Util.*;
 
-
+/**
+ * Tehila Naki-323071571- nakitehila@gmail.com
+ * Merav Izhaki-322915430-meravy14@gmail.com
+ */
 public final class Main {
 
     public static void main(String[] args) {

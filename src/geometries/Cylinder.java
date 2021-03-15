@@ -5,7 +5,7 @@ import primitives.Vector;
 
 /**
  * Cylinder class represent a three-dimensional cylinder- inherited from a tube and a height added to it
- * @author TehilaNaki & MeravYzhaki
+ * @author TehilaNaki & MeravIzhaki
  */
 public class Cylinder extends Tube{
 

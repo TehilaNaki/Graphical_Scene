@@ -2,7 +2,7 @@ package primitives;
 /**
  * Class Point3D is the basic class representing a point of Euclidean geometry in Cartesian
  * 3-Dimensional coordinate system.
- * @author TehilaNaki and MeravYzhaki
+ * @author TehilaNaki and MeravIzhaki
  */
 
 public class Point3D {

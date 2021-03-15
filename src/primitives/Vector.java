@@ -2,7 +2,7 @@ package primitives;
 /**
  * Class Vector is the basic class representing a vector
  * point3D is the head of the vector.
- * @author TehilaNaki and MeravYzhaki
+ * @author TehilaNaki and MeravIzhaki
  */
 
  public class Vector {

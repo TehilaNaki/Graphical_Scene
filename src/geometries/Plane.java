@@ -4,9 +4,7 @@ import primitives.Point3D;
 import primitives.Vector;
 /**
  * Plane class represents plane with vector and point in 3D Cartesian coordinate
- * system
- *
- * @author TehilaNaki & MeravYzhaki
+ * @author TehilaNaki & MeravIzhaki
  */
 public class Plane implements Geometry{
 

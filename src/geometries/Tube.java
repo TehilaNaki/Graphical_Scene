@@ -6,7 +6,7 @@ import primitives.Vector;
 
 /**
  * Tube class represent a three-dimensional tube with Ray and radius
- * @author TehilaNaki & MeravYzhaki
+ * @author TehilaNaki & MeravIzhaki
  */
 
 public class Tube implements Geometry{
