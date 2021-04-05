@@ -20,7 +20,7 @@ package primitives;
 
      @Override
      public String toString() {
-         return "t" + head;
+         return head.toString();
      }
 
      public Vector(Point3D h) {
