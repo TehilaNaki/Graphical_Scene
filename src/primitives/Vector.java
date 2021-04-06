@@ -41,6 +41,7 @@ package primitives;
      public Point3D getHead() {
          return head;
      }
+     public boolean IsZero(){ return head.IsZero();}
 
     public Vector add(Vector v) {
        return new Vector(head.add(v));
@@ -63,10 +64,20 @@ package primitives;
      }
 
      public Vector crossProduct(Vector v) {
+
+         if(parallelVectors(v))
+             throw new IllegalArgumentException("the vectors are parallel!!!");
          double x=head.y.coord*v.head.z.coord- head.z.coord*v.head.y.coord;
          double y=head.z.coord*v.head.x.coord- head.x.coord*v.head.z.coord;
          double z=head.x.coord*v.head.y.coord- head.y.coord*v.head.x.coord;
          return new Vector(x,y,z);
+     }
+     public boolean parallelVectors(Vector v)
+     {
+         double divideX=head.x.coord/v.head.x.coord;
+         double divideY=head.y.coord/v.head.y.coord;
+         double divideZ=head.z.coord/v.head.z.coord;
+         return divideX == divideY && divideY == divideZ;
      }
 
      public double lengthSquared() {
