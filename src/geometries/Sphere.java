@@ -8,15 +8,47 @@ import primitives.Vector;
  */
 public class Sphere implements Geometry{
 
-    private Point3D center;
-    private double radius;
+    protected final Point3D center;
+    protected final double radius;
 
-    public Point3D getCenter() {
+    /**
+     * creates a new sphere by a given center point and radius
+     * @param c The center point.
+     * @param r The sphere's radius
+     *@exception IllegalArgumentException When the radius smaller or equals 0..
+     */
+    public Sphere(Point3D c, double r)
+    {
+        if(r <= 0)
+        {
+            throw new IllegalArgumentException("The radius should be greater then 0");
+        }
+        center=c;
+        radius=r;
+    }
+
+    /**
+     * Returns the sphere's center point.
+     * @return A shallow copy of the center point.
+     */
+    public Point3D getCenter()
+    {
         return center;
     }
 
-    public double getRadius() {
+    /**
+     * Returns the sphere's radius.
+     * @return return radius.
+     */
+    public double getRadius()
+    {
         return radius;
+    }
+
+    @Override
+    public Vector getNormal(Point3D p)
+    {
+             return p.subtract(center).normalize();
     }
 
     @Override
@@ -27,8 +59,5 @@ public class Sphere implements Geometry{
                 '}';
     }
 
-    @Override
-    public Vector getNormal(Point3D p) {
-        return null;
-    }
+
 }

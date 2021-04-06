@@ -1,6 +1,6 @@
 package UnitTest;
 
-import org.junit.Test;
+import org.testng.annotations.Test;
 import primitives.Point3D;
 import primitives.Vector;
 

@@ -8,8 +8,8 @@ import java.util.Objects;
  */
 public class Ray
 {
-    private Point3D p0;
-    private Vector dir;
+    private final Point3D p0;
+    private final Vector dir;
 
     @Override
     public boolean equals(Object obj) {
@@ -34,13 +34,14 @@ public class Ray
         dir=v.normalized();
     }
 
-    public Point3D getP0() {
+    public Point3D getPoint() {
         return p0;
     }
 
     public Vector getDir() {
         return dir;
     }
+
 
 
 }

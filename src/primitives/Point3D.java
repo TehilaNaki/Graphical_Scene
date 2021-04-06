@@ -44,17 +44,20 @@ public class Point3D {
     /**
       *the func check if the point is zero
      */
-    public boolean IsZero() {
+    public boolean IsZero()
+    {
         if(this.equals(Point3D.ZERO))
             throw new IllegalArgumentException("the vector is the zero vector!!!");
         else return false;
     }
 
-    public Point3D add(Vector v) {
+    public Point3D add(Vector v)
+    {
         return new Point3D(x.coord+v.getHead().x.coord,y.coord+v.getHead().y.coord,z.coord+v.getHead().z.coord);
     }
 
-   public Vector subtract(Point3D p0) {
+   public Vector subtract(Point3D p0)
+   {
        return new Vector(x.coord-p0.x.coord,y.coord-p0.y.coord,z.coord-p0.z.coord);
    }
    public double distanceSquared(Point3D p)
