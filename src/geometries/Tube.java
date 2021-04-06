@@ -22,8 +22,7 @@ public class Tube implements Geometry{
      * @param r The tube's radius.
      * @exception IllegalArgumentException When the radius is equals or less than 0.
      */
-    public Tube(Ray axis, double r)
-    {
+    public Tube(Ray axis, double r) {
         if(r <= 0)
         {
             throw new IllegalArgumentException("The radius should be grater than 0");
@@ -54,8 +53,7 @@ public class Tube implements Geometry{
 
 
     @Override
-    public Vector getNormal(Point3D p)
-    {
+    public Vector getNormal(Point3D p){
         // Finding the normal:
         // n = normalize(p - o)
         // t = v * (p - p0)
@@ -78,7 +76,7 @@ public class Tube implements Geometry{
     }
 
     @Override
-    public String toString() {
+    public String toString(){
         return "Tube{" +
                 "axisRay=" + axisRay +
                 ", radius=" + radius +

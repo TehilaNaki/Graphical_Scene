@@ -18,8 +18,7 @@ public class TriangleTest
      * Test method for {@link geometries.Triangle#Triangle(primitives.Point3D, primitives.Point3D, primitives.Point3D)}.
      */
     @Test
-    public void testConstructor()
-    {
+    public void testConstructor() {
         // ============ Equivalence Partitions Tests ==============
         // TC01: Test for a proper result.
         try{
@@ -29,9 +28,7 @@ public class TriangleTest
                             new Point3D(0,1,0),
                             new Point3D(0,0,1)
                     );
-        }
-        catch (IllegalArgumentException error)
-        {
+        } catch (IllegalArgumentException error) {
             fail("Failed constructor of the correct triangle");
         }
 
@@ -45,8 +42,7 @@ public class TriangleTest
                             new Point3D(0,0,1)
                     );
             fail("Constructed a triangle while a point equal to b point");
-        }
-        catch (IllegalArgumentException ignored){}
+        } catch (IllegalArgumentException ignored){}
         //TC03: Test when a point equal to c point.
         try{
             new Triangle
@@ -56,8 +52,7 @@ public class TriangleTest
                             new Point3D(1,0,0)
                     );
             fail("Constructed a triangle while a point equal to c point");
-        }
-        catch (IllegalArgumentException ignored){}
+        } catch (IllegalArgumentException ignored){}
         //TC04: Test when b point equal to c point.
         try{
             new Triangle
@@ -67,16 +62,14 @@ public class TriangleTest
                             new Point3D(0,0,1)
                     );
             fail("Constructed a triangle while b point equal to c point");
-        }
-        catch (IllegalArgumentException ignored){}
+        } catch (IllegalArgumentException ignored){}
     }
 
     /**
      * Test method for {@link geometries.Triangle#getNormal(primitives.Point3D)}.
      */
     @Test
-    public void testGetNormal()
-    {
+    public void testGetNormal() {
         Triangle triangle= new Triangle
                 (
                         new Point3D(1,0,0),

@@ -36,14 +36,13 @@ public class Cylinder extends Tube{
      * Returns the cylinder's height
      * @return the cylinder's height
      */
-    public double getHeight()
-    {
+    public double getHeight() {
         return height;
     }
 
     @Override
-    public Vector getNormal(Point3D p) {
-       return null;
+    public Vector getNormal(Point3D p){
+        return null;
     }
 
 

@@ -31,8 +31,7 @@ public class TubeTest
         try {
             new Tube(new Ray(new Point3D(1, 2, 3), new Vector(1, 5, 4)), 0);
             fail("Constructed a Tube while a radius can not be 0");
-        } catch (IllegalArgumentException ignored) {
-        }
+        } catch (IllegalArgumentException ignored) { }
         //TC03:Test when the radius negative, -1
         try {
             new Tube(new Ray(new Point3D(1, 2, 3), new Vector(1, 5, 4)), -1);
@@ -44,8 +43,7 @@ public class TubeTest
      * Test method for {@link geometries.Tube#getNormal(primitives.Point3D)}
      */
     @Test
-    public void testGetNormal()
-    {
+    public void testGetNormal() {
         // ============ Equivalence Partitions Tests ==============
         Tube tube= new Tube( new Ray(new Point3D(1,1,0),new Vector(0,0,1)),1d);
 

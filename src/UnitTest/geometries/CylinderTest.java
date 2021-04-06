@@ -18,8 +18,7 @@ public class CylinderTest
      * Test method for {@link geometries.Cylinder#Cylinder(primitives.Ray, double, double)}.
      */
     @Test
-    public void testConstructor()
-    {
+    public void testConstructor() {
         // ============ Equivalence Partitions Tests ==============
         //TC01: Test for a proper result
         try {
@@ -44,8 +43,7 @@ public class CylinderTest
         try {
             new Cylinder(new Ray(new Point3D(1, 2, 3), new Vector(1, 5, 4)), 5,0);
             fail("Constructed a cylinder while a height can not be 0");
-        } catch (IllegalArgumentException ignored) {
-        }
+        } catch (IllegalArgumentException ignored) { }
         //TC03:Test when the height negative, -1
         try {
             new Cylinder(new Ray(new Point3D(1, 2, 3), new Vector(1, 5, 4)), 5,-1);

@@ -19,8 +19,7 @@ public class Plane implements Geometry{
      * @param p A point on the plane.
      * @param _normal The plane's normal.
      */
-    public Plane(Point3D p,Vector _normal)
-    {
+    public Plane(Point3D p,Vector _normal) {
         q0=p;
         normal=_normal;
     }
@@ -34,8 +33,7 @@ public class Plane implements Geometry{
      *@exception IllegalArgumentException When at least two of the given points are equals.
      */
 
-    public Plane(Point3D p1, Point3D p2, Point3D p3)
-    {
+    public Plane(Point3D p1, Point3D p2, Point3D p3) {
         if(p1.equals(p2) || p1.equals(p3) || p2.equals(p3)) {
             throw new IllegalArgumentException("All points should be different");
         }
