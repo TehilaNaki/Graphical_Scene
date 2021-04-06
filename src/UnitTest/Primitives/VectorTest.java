@@ -1,12 +1,9 @@
-package UnitTest;
+package UnitTest.Primitives;
 
 import org.testng.annotations.Test;
-import primitives.Point3D;
 import primitives.Vector;
 
-import static java.lang.System.out;
 import static org.junit.Assert.*;
-import static org.testng.Assert.assertThrows;
 import static primitives.Util.isZero;
 
 public class VectorTest {
@@ -106,6 +103,9 @@ public class VectorTest {
         Vector v1 = new Vector(1, 2, 3);
         Vector v2 = new Vector(0, 3, -2);
         Vector v3 = new Vector(-2, -4, -6);
+        Vector v4 = new Vector(3, 6, 9);
+        Vector v5 = new Vector(-5, -1, 0);
+        Vector v6 = new Vector(0, 0, 4);
         // ============ Equivalence Partitions Tests ==============
 
         Vector vr = v1.crossProduct(v2);
@@ -117,11 +117,25 @@ public class VectorTest {
         assertTrue("crossProduct() result is not orthogonal to 1st operand", isZero(vr.dotProduct(v1)));
         assertTrue("crossProduct() result is not orthogonal to 2nd operand", isZero(vr.dotProduct(v2)));
 
+            assertTrue("ERROR: dotProduct() wrong value in opposite direction",!v1.crossProduct(v2).IsZero());//opposite direction
+            assertTrue("ERROR: dotProduct() wrong value in acute angle",!v1.crossProduct(v6).IsZero());//acute angle
+            assertTrue("ERROR: dotProduct() wrong value in obtuse angle",!v1.crossProduct(v5).IsZero());//obtuse angle
+
         // =============== Boundary Values Tests ==================
+        //check if the vectors is parallel
          try {
              v1.crossProduct(v3);
              fail("crossProduct() for parallel vectors does not throw an exception");
          } catch (Exception ignored) {}
+        vr=(v5.crossProduct(v3));
+        try {//same vector
+            vr=v1.crossProduct(v1);
+            assertTrue("ERROR: crossProduct() of vector with himself",vr.IsZero());
+            fail("Didn't throw parallel exception!");
+        } catch ( IllegalArgumentException e) {
+            assertTrue(true);
+        }
+
 
     }
 
@@ -143,7 +157,6 @@ public class VectorTest {
         assertSame("ERROR: normalize() function creates a new vector", vCopy, vCopyNormalize);
         //check if the vector returned is the unit vector
         assertTrue("ERROR: normalize() result is not a unit vector",isZero(vCopyNormalize.length() - 1));
-
 
     }
 

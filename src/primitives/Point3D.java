@@ -50,16 +50,23 @@ public class Point3D {
             throw new IllegalArgumentException("the vector is the zero vector!!!");
         else return false;
     }
-
+    /**
+     *the func add a vector to point and return point
+     */
     public Point3D add(Vector v)
     {
         return new Point3D(x.coord+v.getHead().x.coord,y.coord+v.getHead().y.coord,z.coord+v.getHead().z.coord);
     }
-
+    /**
+     *the func return a vector between 2 points
+     */
    public Vector subtract(Point3D p0)
    {
        return new Vector(x.coord-p0.x.coord,y.coord-p0.y.coord,z.coord-p0.z.coord);
    }
+    /**
+     *the func return the  distance squared between 2 points
+     */
    public double distanceSquared(Point3D p)
    {
        double sum=0;
@@ -75,6 +82,9 @@ public class Point3D {
        sum+=temp;
        return sum;
    }
+    /**
+     *the func return the  distance between 2 points
+     */
    public double distance(Point3D p)
    {
        return (Math.sqrt(distanceSquared(p)));
