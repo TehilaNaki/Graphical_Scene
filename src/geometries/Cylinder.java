@@ -42,7 +42,32 @@ public class Cylinder extends Tube{
 
     @Override
     public Vector getNormal(Point3D p){
-        return null;
+        // Finding the normal:
+        // n = normalize(p - o)
+        // t = v * (p - p0)
+        // o = p0 + t * v
+
+        Vector v= axisRay.getDir();
+        Point3D p0 =axisRay.getPoint();
+
+        //if p=p0, then (p-p0) is zero vector
+        //returns the vector of the base as a normal
+        if(p.equals(p0)){
+            return v.scale(-1);
+        }
+
+        double t= v.dotProduct(p.subtract(p0));
+        //check if the point on the bottom
+        if(isZero(t)){
+            return v.scale(-1);
+        }
+        //check if the point on the top
+        if(isZero(t-height)){
+            return v;
+        }
+
+        Point3D o=p0.add(v.scale(t));
+        return p.subtract(o).normalize();
     }
 
 

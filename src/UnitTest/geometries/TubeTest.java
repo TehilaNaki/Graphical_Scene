@@ -48,5 +48,7 @@ public class TubeTest
         Tube tube= new Tube( new Ray(new Point3D(1,1,0),new Vector(0,0,1)),1d);
 
         assertEquals(new Vector(0,-1,0), tube.getNormal(new Point3D(1,0,2)), "Bad normal to tube");
+
+
     }
 }
