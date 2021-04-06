@@ -1,4 +1,4 @@
-package UnitTest;
+package UnitTest.Primitives;
 
 import org.testng.annotations.Test;
 import primitives.Point3D;
@@ -26,7 +26,12 @@ public class Point3DTest {
         Vector v0=new Vector(5,1,5);
         Vector v1=p0.subtract(p1);
         assertEquals("Subtract() wrong result of sub",v0,v1);
-
+        // =============== Boundary Values Tests ==================
+        //sub point by it self
+        try {
+            p0.subtract(p0);
+            fail("Subtract() wrong result of sub point by it self");
+        } catch (Exception ignored) {}
     }
 
 
@@ -36,7 +41,11 @@ public class Point3DTest {
         Point3D p0=new Point3D(1,3,-2);
         Point3D p1=new Point3D(-4,2,-7);
         double d=p0.distanceSquared(p1);
-        assertEquals("distanceSquared() wrong result",d,51,0.0001);
+        assertEquals("distanceSquared() wrong result",d,51,0.00001);
+        // =============== Boundary Values Tests ==================
+        //distance of point from it self
+        assertEquals( "the distance of point from herself is not 0",0,p0.distanceSquared(p0),0.00001);
+
     }
 
     @org.junit.Test
