@@ -1,13 +1,13 @@
 package UnitTest.geometries;
 
 import geometries.Cylinder;
-import geometries.Tube;
 import org.junit.Test;
 import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 /**
  * Unit tests for {@link geometries.Cylinder} class.
