@@ -67,7 +67,7 @@ public class VectorTest {
         try {
             assertTrue("scale() wrong result",v0.scale(0).IsZero());
             fail("Didn't throw zero exception!");
-        } catch ( IllegalArgumentException e) {}
+        } catch ( IllegalArgumentException ignored) {}
         //multiply in 1
             assertEquals("scale() wrong result",v0.scale(1),v0);
     }
