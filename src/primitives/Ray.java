@@ -11,6 +11,32 @@ public class Ray
     private final Point3D p0;
     private final Vector dir;
 
+    /**
+     * Creates a new ray by point and vector.
+     * @param p A point of the ray.
+     * @param v A vector of the ray.
+     */
+    public Ray(Point3D p,Vector v)
+    {
+        p0=p;
+        dir=v.normalized();
+    }
+
+    /**
+     * Returns a point of the ray.
+     * @return A shallow copy of the point.
+     */
+    public Point3D getPoint() {
+        return p0;
+    }
+    /**
+     * Returns a vector of the ray.
+     * @return A shallow copy of the vector.
+     */
+    public Vector getDir() {
+        return dir;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
@@ -24,23 +50,10 @@ public class Ray
     public String toString() {
         return "Ray{" +
                 "p0=" + p0 +
-                ", diruction=" + dir +
+                ", direction=" + dir +
                 '}';
     }
 
-    public Ray(Point3D p,Vector v)
-    {
-        p0=p;
-        dir=v.normalized();
-    }
-
-    public Point3D getPoint() {
-        return p0;
-    }
-
-    public Vector getDir() {
-        return dir;
-    }
 
 
 

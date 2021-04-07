@@ -6,76 +6,74 @@ import primitives.Vector;
 import static org.junit.Assert.*;
 import static primitives.Util.isZero;
 
+/**
+ * Unit tests for {@link primitives.Vector} class.
+ */
 public class VectorTest {
 
+    /**
+     * Test method for {@link primitives.Vector#add(Vector)}.
+     */
     @Test
     public void testAdd() {
         // ============ Equivalence Partitions Tests ==============
         Vector v0=new Vector(2,-1,4);
         Vector v1=new Vector(3,2,4);
-        Vector v2=v0.add(v1);
-        Vector v=new Vector(5,1,8);
-        assertEquals("add() wrong result of adding",v2,v);
+
+        assertEquals("add() wrong result of adding",v0.add(v1),new Vector(5,1,8));
+
         // =============== Boundary Values Tests ==================
         //not checks the Zero vector because can not build the zero vector
     }
 
+    /**
+     * Test method for {@link primitives.Vector#subtract(Vector)}.
+     */
     @Test
     public void testSubtract() {
         // ============ Equivalence Partitions Tests ==============
         Vector v0=new Vector(1,3,-2);
         Vector v1=new Vector(-4,2,-7);
-        Vector v2=new Vector(5,1,5);
-        Vector v=v0.subtract(v1);
-        assertEquals("Subtract() wrong result of sub",v,v2);
+
+        assertEquals("Subtract() wrong result of sub",v0.subtract(v1),new Vector(5,1,5));
 
         // =============== Boundary Values Tests ==================
         //sub vector by itself
         try {
-             v=v2.subtract(v2);
-            assertTrue("Subtract() wrong result of sub vector by itself",v.IsZero());
-            fail("Didn't throw zero exception!");
-        } catch ( IllegalArgumentException e) {
-            assertTrue(true);
-        }
+            assertTrue("Subtract() wrong result of sub vector by itself",v0.subtract(v0).IsZero());
+            fail("Failed, didn't throw zero exception!");
+        } catch ( IllegalArgumentException ignored) {}
     }
-
+    /**
+     * Test method for {@link primitives.Vector#scale(double)}.
+     */
     @Test
     public void testScale() {
         // ============ Equivalence Partitions Tests ==============
-
         Vector v0=new Vector(1,-3,-2);
-        Vector v1=new Vector(-1,3,2);
-        Vector v2=new Vector(0.5,-1.5,-1);
-        Vector v3=new Vector(5,-15,-10);
 
         //multiply in number<0
-        Vector v=v0.scale(-1);
-        assertEquals("scale() wrong result",v1,v);
+        assertEquals("scale() wrong result",new Vector(-1,3,2),v0.scale(-1));
 
         //multiply in 0<number<1
-         v=v0.scale(0.5);
-        assertEquals("scale() wrong result",v2,v);
+        assertEquals("scale() wrong result",new Vector(0.5,-1.5,-1),v0.scale(0.5));
 
         //multiply in 1<number
-         v=v0.scale(5);
-        assertEquals("scale() wrong result",v3,v);
+        assertEquals("scale() wrong result",new Vector(5,-15,-10),v0.scale(5));
 
 
         // =============== Boundary Values Tests ==================
        //multiply in zero
         try {
-             v=v0.scale(0);
-            assertTrue("scale() wrong result",v.IsZero());
+            assertTrue("scale() wrong result",v0.scale(0).IsZero());
             fail("Didn't throw zero exception!");
-        } catch ( IllegalArgumentException e) {
-            assertTrue(true);
-        }
+        } catch ( IllegalArgumentException e) {}
         //multiply in 1
-             v=v0.scale(1);
-            assertEquals("scale() wrong result",v,v0);
+            assertEquals("scale() wrong result",v0.scale(1),v0);
     }
-
+    /**
+     * Test method for {@link primitives.Vector#dotProduct(Vector)}.
+     */
     @Test
     public void testDotProduct() {
 
@@ -85,6 +83,7 @@ public class VectorTest {
         Vector v4 = new Vector(3, 6, 9);
         Vector v5 = new Vector(-5, -1, 0);
         Vector v6 = new Vector(0, 0, 4);
+
        // ============ Equivalence Partitions Tests ==============
         assertTrue("ERROR: dotProduct() wrong value in opposite direction",isZero(v1.dotProduct(v2) + 28));//opposite direction
         assertTrue("ERROR: dotProduct() wrong value in same direction",isZero(v1.dotProduct(v4)-42));//same direction
@@ -96,6 +95,9 @@ public class VectorTest {
         assertTrue("ERROR: dotProduct() of vector with himself",isZero(v1.dotProduct(v1)-14));//same vector
     }
 
+    /**
+     * Test method for {@link primitives.Vector#crossProduct(Vector)}.
+     */
     @Test
     public void testCrossProduct() {
 
@@ -105,6 +107,7 @@ public class VectorTest {
         Vector v3 = new Vector(-2, -4, -6);
         Vector v4 = new Vector(-5, -1, 0);
         Vector v5 = new Vector(0, 0, 4);
+
         // ============ Equivalence Partitions Tests ==============
 
         Vector vr = v1.crossProduct(v2);
@@ -125,46 +128,50 @@ public class VectorTest {
          try {
              v1.crossProduct(v3);
              fail("crossProduct() for parallel vectors does not throw an exception");
-         } catch (Exception ignored) {}
+         } catch (IllegalArgumentException ignored) {}
 
         try {//same vector
             vr=v1.crossProduct(v1);
             assertTrue("ERROR: crossProduct() of vector with himself",vr.IsZero());
             fail("Didn't throw parallel exception!");
-        } catch ( IllegalArgumentException e) {
-            assertTrue(true);
-        }
-
+        } catch ( IllegalArgumentException ignored) {}
 
     }
-
+    /**
+     * Test method for {@link Vector#length()}.
+     */
     @Test
     public void testLength() {
 
         Vector v1 = new Vector(1, 2, 3);
+
         assertEquals("ERROR: lengthSquared() wrong value",v1.lengthSquared(),14,0.00001);
         assertEquals("ERROR: length() wrong value",new Vector(0, 3, 4).length() , 5,0.00001);
     }
-
+    /**
+     * Test method for {@link Vector#normalize()}.
+     */
     @Test
     public void testNormalize() {
 
         Vector v = new Vector(1, 2, 3);
         Vector vCopy = new Vector(v.getHead());
-        Vector vCopyNormalize = vCopy.normalize();
+
         //check if the normalize function creates a new vector
-        assertSame("ERROR: normalize() function creates a new vector", vCopy, vCopyNormalize);
+        assertSame("ERROR: normalize() function creates a new vector", vCopy, vCopy.normalize());
         //check if the vector returned is the unit vector
-        assertTrue("ERROR: normalize() result is not a unit vector",isZero(vCopyNormalize.length() - 1));
+        assertTrue("ERROR: normalize() result is not a unit vector",isZero(vCopy.normalize().length() - 1));
 
     }
-
+    /**
+     * Test method for {@link Vector#normalize()}.
+     */
     @Test
     public void testNormalized() {
 
         Vector v = new Vector(1, 2, 3);
         //check if normalized function creates a new vector
-        Vector u = v.normalized();
-        assertNotSame("ERROR: normalized() function does not create a new vector", u, v);
+
+        assertNotSame("ERROR: normalized() function does not create a new vector", v.normalized(), v);
     }
 }
