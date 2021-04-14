@@ -1,7 +1,11 @@
 package geometries;
 
 import primitives.Point3D;
+import primitives.Ray;
 import primitives.Vector;
+
+import java.util.List;
+
 /**
  * Sphere class represent a three-dimensional Sphere with a center point and radius
  * @author TehilaNaki & MeravIzhaki
@@ -59,4 +63,8 @@ public class Sphere implements Geometry{
     }
 
 
+    @Override
+    public List<Point3D> findIntersections(Ray ray) {
+    return null;
+    }
 }

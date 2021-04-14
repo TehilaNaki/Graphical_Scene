@@ -53,7 +53,9 @@ public class Ray
                 ", direction=" + dir +
                 '}';
     }
-
+    public boolean pointOnRay(Point3D p){
+        return true;
+    }
 
 
 

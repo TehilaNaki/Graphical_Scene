@@ -4,13 +4,15 @@ import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
 
+import java.util.List;
+
 import static primitives.Util.isZero;
 
 /**
  * Cylinder class represent a three-dimensional cylinder- inherited from a tube and a height added to it
  * @author TehilaNaki & MeravIzhaki
  */
-public class Cylinder extends Tube{
+public class Cylinder extends Tube implements Geometry{
 
     protected final double height;
 
@@ -70,6 +72,10 @@ public class Cylinder extends Tube{
         return p.subtract(o).normalize();
     }
 
+    @Override
+    public List<Point3D> findIntersections(Ray ray) {
+        return super.findIntersections(ray);
+    }
 
     @Override
     public String toString() {

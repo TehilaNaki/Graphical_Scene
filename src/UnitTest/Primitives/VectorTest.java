@@ -4,6 +4,7 @@ import org.testng.annotations.Test;
 import primitives.Vector;
 
 import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static primitives.Util.isZero;
 
 /**
@@ -20,7 +21,7 @@ public class VectorTest {
         Vector v0=new Vector(2,-1,4);
         Vector v1=new Vector(3,2,4);
 
-        assertEquals("add() wrong result of adding",v0.add(v1),new Vector(5,1,8));
+        assertEquals(v0.add(v1),new Vector(5,1,8),"add() wrong result of adding");
 
         // =============== Boundary Values Tests ==================
         //not checks the Zero vector because can not build the zero vector
@@ -35,7 +36,7 @@ public class VectorTest {
         Vector v0=new Vector(1,3,-2);
         Vector v1=new Vector(-4,2,-7);
 
-        assertEquals("Subtract() wrong result of sub",v0.subtract(v1),new Vector(5,1,5));
+        assertEquals(v0.subtract(v1),new Vector(5,1,5),"Subtract() wrong result of sub");
 
         // =============== Boundary Values Tests ==================
         //sub vector by itself
@@ -53,13 +54,13 @@ public class VectorTest {
         Vector v0=new Vector(1,-3,-2);
 
         //multiply in number<0
-        assertEquals("scale() wrong result",new Vector(-1,3,2),v0.scale(-1));
+        assertEquals(new Vector(-1,3,2),v0.scale(-1),"scale() wrong result");
 
         //multiply in 0<number<1
-        assertEquals("scale() wrong result",new Vector(0.5,-1.5,-1),v0.scale(0.5));
+        assertEquals(new Vector(0.5,-1.5,-1),v0.scale(0.5),"scale() wrong result");
 
         //multiply in 1<number
-        assertEquals("scale() wrong result",new Vector(5,-15,-10),v0.scale(5));
+        assertEquals(new Vector(5,-15,-10),v0.scale(5),"scale() wrong result");
 
 
         // =============== Boundary Values Tests ==================
@@ -69,7 +70,7 @@ public class VectorTest {
             fail("Didn't throw zero exception!");
         } catch ( IllegalArgumentException ignored) {}
         //multiply in 1
-            assertEquals("scale() wrong result",v0.scale(1),v0);
+        assertEquals(v0.scale(1),v0,"scale() wrong result");
     }
     /**
      * Test method for {@link primitives.Vector#dotProduct(Vector)}.
@@ -113,7 +114,7 @@ public class VectorTest {
         Vector vr = v1.crossProduct(v2);
 
         // TC01: Test that length of cross-product is proper (orthogonal vectors taken for simplicity)
-        assertEquals("crossProduct() wrong result length", v1.length() * v2.length(), vr.length(), 0.00001);
+        assertEquals(v1.length() * v2.length(), vr.length(), 0.00001,"crossProduct() wrong result length");
 
         // TC02: Test cross-product result orthogonality to its operands
         assertTrue("crossProduct() result is not orthogonal to 1st operand", isZero(vr.dotProduct(v1)));
@@ -145,8 +146,8 @@ public class VectorTest {
 
         Vector v1 = new Vector(1, 2, 3);
 
-        assertEquals("ERROR: lengthSquared() wrong value",v1.lengthSquared(),14,0.00001);
-        assertEquals("ERROR: length() wrong value",new Vector(0, 3, 4).length() , 5,0.00001);
+        assertEquals(v1.lengthSquared(),14,0.00001,"ERROR: lengthSquared() wrong value");
+        assertEquals(new Vector(0, 3, 4).length() , 5,0.00001,"ERROR: length() wrong value");
     }
     /**
      * Test method for {@link Vector#normalize()}.
@@ -172,6 +173,6 @@ public class VectorTest {
         Vector v = new Vector(1, 2, 3);
         //check if normalized function creates a new vector
 
-        assertNotSame("ERROR: normalized() function does not create a new vector", v.normalized(), v);
+        assertNotSame("ERROR: normalized() function does not create a new vector",v.normalized(), v);
     }
 }
