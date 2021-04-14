@@ -58,7 +58,9 @@ public class Ray
     }
 
 
-
+    public Point3D getPointBy(double t) {
+       return  p0.add(dir.scale(t));
+    }
 }
 
 
