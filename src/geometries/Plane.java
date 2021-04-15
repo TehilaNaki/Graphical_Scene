@@ -6,6 +6,9 @@ import primitives.Vector;
 
 import java.util.List;
 
+import static primitives.Util.alignZero;
+import static primitives.Util.isZero;
+
 /**
  * Plane class represents plane with vector and point in 3D Cartesian coordinate
  * @author TehilaNaki & MeravIzhaki
@@ -83,13 +86,35 @@ public class Plane implements Geometry{
 
     @Override
     public List<Point3D> findIntersections(Ray ray) {
+        //t=n*(q0-Po)/n*v
+        Vector v= ray.getDir();
+        Point3D p0=ray.getPoint();
 
-        //N*(Q0-p)=0
-        //t=N*(q0-Po)/N*v
-        double t=(normal.dotProduct(q0.subtract(ray.getPoint())))/(normal.dotProduct(ray.getDir()));
-        //P=P0+t*v
-        Point3D p=ray.getPoint().add(ray.getDir().scale(t));
-        return null;
+        //Ray on the plane
+        if(q0.equals(p0)){
+            return null;
+        }
 
+        double nqp=normal.dotProduct(q0.subtract(p0));
+        //Ray on the plane
+        if(isZero(nqp)){
+            return null;
+        }
+
+        double nv= normal.dotProduct(v);
+
+        if(isZero(nv)){
+            return null;
+        }
+
+        double t=nqp/nv;
+
+        //Ray after the plane
+        if(t<0){
+            return null;
+        }
+
+        //Ray crosses the plane
+        return List.of(ray.getPointBy(t));
     }
 }

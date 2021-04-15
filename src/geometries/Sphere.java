@@ -6,6 +6,8 @@ import primitives.Vector;
 
 import java.util.List;
 
+import static primitives.Util.alignZero;
+
 /**
  * Sphere class represent a three-dimensional Sphere with a center point and radius
  *
@@ -65,25 +67,31 @@ public class Sphere implements Geometry {
 
     @Override
     public List<Point3D> findIntersections(Ray ray) {
-        //|P-O|^2-R^2=0
         //u=O-P0
         //tm=v*u
-        // d=sqrt(|u|^2-tm^2)
+        //d=sqrt(|u|^2-tm^2)
         //th=sqrt(r^2-d^2)
         //t1=tm-th, t2=tm+th
         //P1=P0+t1*v  P2=P0+t2*v
 
-        Vector u = center.subtract(ray.getPoint());
-        double tm = u.dotProduct(ray.getDir());
-        double d = Math.sqrt(u.length() * u.length() - tm * tm);
+        Point3D p0 = ray.getPoint();
+        Vector v = ray.getDir();
+
+        if (p0.equals(center)) {
+            return List.of(ray.getPointBy(radius));
+        }
+
+        Vector u = center.subtract(p0);
+        double tm =v.dotProduct(u);
+        double d = alignZero(Math.sqrt(u.lengthSquared() - tm * tm));
 
         if (d >= radius) {
             return null;
         }
 
-        double th = Math.sqrt(radius * radius - d * d);
-        double t1 = tm - th;
-        double t2 = tm + th;
+        double th = alignZero(Math.sqrt(radius * radius - d * d));
+        double t1 = alignZero(tm - th);
+        double t2 = alignZero(tm + th);
 
         if (t1 > 0 && t2 > 0) {
             return List.of(ray.getPointBy(t1), ray.getPointBy(t2));

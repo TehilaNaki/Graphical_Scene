@@ -46,6 +46,15 @@ public class Ray
         return this.p0.equals(other.p0) && this.dir.equals(other.dir);
     }
 
+    /**
+     * Gets a point on the ray by calculating p0 + t*v.
+     * @param t A scalar to calculate the point.
+     * @return A point on the ray.
+     */
+    public Point3D getPointBy(double t) {
+        return  p0.add(dir.scale(t));
+    }
+
     @Override
     public String toString() {
         return "Ray{" +
@@ -58,9 +67,6 @@ public class Ray
     }
 
 
-    public Point3D getPointBy(double t) {
-       return  p0.add(dir.scale(t));
-    }
 }
 
 
