@@ -84,6 +84,11 @@ public class Plane implements Geometry{
     @Override
     public List<Point3D> findIntersections(Ray ray) {
 
+        //N*(Q0-p)=0
+        //t=N*(q0-Po)/N*v
+        double t=(normal.dotProduct(q0.subtract(ray.getPoint())))/(normal.dotProduct(ray.getDir()));
+        //P=P0+t*v
+        Point3D p=ray.getPoint().add(ray.getDir().scale(t));
         return null;
 
     }
