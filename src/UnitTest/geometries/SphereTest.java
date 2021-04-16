@@ -13,11 +13,11 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Unit tests for {@link geometries.Sphere} class.
+ * Unit tests for {@link Sphere} class.
  */
 public class SphereTest {
     /**
-     * Test method for {@link geometries.Sphere#Sphere(primitives.Point3D, double)}.
+     * Test method for {@link Sphere#Sphere(Point3D, double)}.
      */
     @Test
     public void testConstructor() {
@@ -45,7 +45,7 @@ public class SphereTest {
     }
 
     /**
-     * Test method for {@link geometries.Sphere#getNormal(primitives.Point3D)}.
+     * Test method for {@link Sphere#getNormal(Point3D)}.
      */
     @Test
     public void testGetNormal() {

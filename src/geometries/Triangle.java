@@ -1,12 +1,16 @@
 package geometries;
 
 import primitives.Point3D;
+import primitives.Ray;
+
+import java.util.List;
+
 /**
  * Triangle class represent a three-dimensional triangle- inherited from Polygon
  * @author TehilaNaki & MeravIzhaki
  */
 
-public class Triangle extends Polygon{
+public class Triangle extends Polygon {
 
 
     /**
@@ -29,4 +33,6 @@ public class Triangle extends Polygon{
                 ", c=" + vertices.get(2) +
                 '}';
     }
+
+
 }
