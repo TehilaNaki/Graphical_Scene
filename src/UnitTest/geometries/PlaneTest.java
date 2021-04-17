@@ -115,7 +115,7 @@ public class PlaneTest {
         // TC01: Ray intersects the plane (1 points)
         result=plane.findIntersections(new Ray(new Point3D(0,1,1),new Vector(0,0,-1)));
         assertEquals(result.size(),1,"Wrong number of points");
-        assertEquals(new Point3D(0,1,0),result.get(0).cutTwoNumbers());
+        assertEquals(new Point3D(0,1,0),result.get(0).cutTwoNumbers(),"Ray intersects the plane");
 
         // TC02: Ray doesn't intersect the plane (0 points)
         assertNull(plane.findIntersections(new Ray(new Point3D(0,1,1),new Vector(0,0,1))),"Ray doesn't intersect the plane");
