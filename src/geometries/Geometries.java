@@ -12,7 +12,7 @@ import java.util.*;
  */
 public class Geometries implements Intersectable {
 
-   private List<Intersectable> intersectables;
+   private final List<Intersectable> intersectables;
 
 
     /**
