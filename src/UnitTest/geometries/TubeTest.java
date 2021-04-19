@@ -42,7 +42,7 @@ public class TubeTest
     }
 
     /**
-     * Test method for {@link geometries.Tube#getNormal(primitives.Point3D)}
+     * Test method for {@link Tube#getNormal(Point3D)}
      */
     @Test
     public void testGetNormal() {
@@ -51,10 +51,11 @@ public class TubeTest
 
         assertEquals(new Vector(0,-1,0), tube.getNormal(new Point3D(1,0,2)), "Bad normal to tube");
 
-
     }
-
-    @org.junit.jupiter.api.Test
+    /**
+     * Test method for {@link Tube#findIntersections(Ray)}.
+     */
+    @Test
     void findIntersections() {
 
         Tube tube =new Tube(new Ray(new Point3D(0,1,0),new Vector(0,0,2)),3);
@@ -91,11 +92,6 @@ public class TubeTest
         //TC06:Ray start on the tube(0 point)
         result=tube.findIntersections(new Ray(new Point3D(-0.44d,-1.97d,4.14d),new Vector(-3.66d,-12.92d,-4.14d)));
         assertNull(result,"Wrong point");
-
-        //TC07:
-
-
-
 
     }
 }
