@@ -20,25 +20,23 @@ public class Geometries implements Intersectable {
      * Creates an empty list of intersectables.
      */
     public Geometries() {
-        // ArrayList has constant-time access and the class probably will access the list a lot more
-        // than add to the list, so I chose to use Array List instead of LinkedList.
-        intersectables = new ArrayList<>();
+        intersectables = new LinkedList<>();
     }
 
     /**
      * Creates a list of given intersectables.
-     * @param _intersectables List of intersectables
+     * @param intersectables List of intersectables
      */
-    public Geometries(Intersectable... _intersectables) {
-        intersectables = new ArrayList<>(Arrays.asList(_intersectables));
+    public Geometries(Intersectable... intersectables) {
+        this.intersectables=new LinkedList<>(Arrays.asList(intersectables));
     }
 
     /**
      * Adds a list of given intersectables to the current list.
-     * @param _intersectables List of intersectables to add
+     * @param intersectables List of intersectables to add
      */
-    public void add(Intersectable... _intersectables){
-        intersectables.addAll(Arrays.asList(_intersectables));
+    public void add(Intersectable... intersectables){
+        this.intersectables.addAll(Arrays.asList(intersectables));
     }
 
     @Override
@@ -51,7 +49,7 @@ public class Geometries implements Intersectable {
           if(geoPoints!=null){
 
               if(result==null){
-                  result=new ArrayList<>();
+                  result=new LinkedList<>();
               }
 
               result.addAll(geoPoints);
