@@ -54,8 +54,8 @@ public class Geometries implements Intersectable {
 
               result.addAll(geoPoints);
           }
-
       }
+
      return result;
 
     }
