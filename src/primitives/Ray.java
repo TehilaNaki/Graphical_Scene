@@ -1,36 +1,41 @@
 package primitives;
 
-import java.util.Objects;
+import java.util.List;
+
+
 /**
  * Class Ray is the basic class representing a ray
  * point3D is the start point, Vector is the direction.
+ *
  * @author TehilaNaki and MeravIzhaki
  */
-public class Ray
-{
+public class Ray {
     private final Point3D p0;
     private final Vector dir;
 
     /**
      * Creates a new ray by point and vector.
+     *
      * @param p A point of the ray.
      * @param v A vector of the ray.
      */
-    public Ray(Point3D p,Vector v)
-    {
-        p0=p;
-        dir=v.normalized();
+    public Ray(Point3D p, Vector v) {
+        p0 = p;
+        dir = v.normalized();
     }
 
     /**
      * Returns a point of the ray.
+     *
      * @return A shallow copy of the point.
      */
     public Point3D getPoint() {
         return p0;
     }
+
     /**
      * Returns a vector of the ray.
+     *
      * @return A shallow copy of the vector.
      */
     public Vector getDir() {
@@ -48,11 +53,12 @@ public class Ray
 
     /**
      * Gets a point on the ray by calculating p0 + t*v.
+     *
      * @param t A scalar to calculate the point.
      * @return A point on the ray.
      */
     public Point3D getPointBy(double t) {
-        return  p0.add(dir.scale(t));
+        return p0.add(dir.scale(t));
     }
 
     @Override
@@ -62,10 +68,34 @@ public class Ray
                 ", direction=" + dir +
                 '}';
     }
-    public boolean pointOnRay(Point3D p){
+
+    public boolean pointOnRay(Point3D p) {
         return true;
     }
 
+    /**
+     * The function find the closest points to P0 of the ray
+     * @param points
+     * @return Point3D the closes point
+     */
+
+    public Point3D findClosestPoint(List<Point3D> points) {
+
+        double minDistance = Double.POSITIVE_INFINITY;
+        double d;
+        Point3D closePoint = null;
+
+        for (Point3D p : points) {
+            
+             d = p0.distance(p);
+             //check if the distance of p is smaller then minDistance
+            if (d < minDistance) {
+                closePoint = p;
+                minDistance = d;
+            }
+        }
+        return closePoint;
+    }
 
 }
 
