@@ -7,14 +7,12 @@ import primitives.Color;
 public class Scene {
 
     public String name;
-    public Color background;
-    public AmbientLight ambientLight;
-    public Geometries geometries;
+    public Color background=Color.BLACK;
+    public AmbientLight ambientLight=new AmbientLight(new Color(192,192,192),1);
+    public Geometries geometries=null;
 
     public Scene(String name) {
         this.name = name;
-        background=Color.BLACK;
-        ambientLight=new AmbientLight(Color.BLACK,0);
         geometries=new Geometries();
     }
 

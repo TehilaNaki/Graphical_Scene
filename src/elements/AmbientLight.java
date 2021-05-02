@@ -9,7 +9,7 @@ public class AmbientLight {
     public AmbientLight(Color Ia, double Ka) {
         if(Ka<0 || Ka>1)
             return;
-        intensity=new Color(Ia.scale(Ka));
+        intensity=Ia.scale(Ka);
     }
 
     public Color getIntensity() {

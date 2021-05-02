@@ -69,9 +69,7 @@ public class Ray {
                 '}';
     }
 
-    public boolean pointOnRay(Point3D p) {
-        return true;
-    }
+
 
     /**
      * The function find the closest points to P0 of the ray
@@ -81,17 +79,21 @@ public class Ray {
 
     public Point3D findClosestPoint(List<Point3D> points) {
 
-        double minDistance = Double.POSITIVE_INFINITY;
+        double minDistance = Double.MAX_VALUE;
         double d;
         Point3D closePoint = null;
 
+        if(points==null){
+            return null;
+        }
+
         for (Point3D p : points) {
             
-             d = p0.distance(p);
+             d = p.distance(p0);
              //check if the distance of p is smaller then minDistance
             if (d < minDistance) {
-                closePoint = p;
                 minDistance = d;
+                closePoint = p;
             }
         }
         return closePoint;

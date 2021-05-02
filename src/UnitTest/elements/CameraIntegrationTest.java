@@ -126,6 +126,7 @@ public class CameraIntegrationTest {
             }
             assertEquals(sumOfIntersection, expectedIntersections[id], "Wrong number of intersectables");
         }
+
     }
 
 }
