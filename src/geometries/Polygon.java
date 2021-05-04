@@ -42,6 +42,7 @@ public class Polygon implements Geometry {
      *                                  </ul>
      */
     public Polygon(Point3D... vertices) {
+
         if (vertices.length < 3)
             throw new IllegalArgumentException("A polygon can't have less than 3 vertices");
         this.vertices = List.of(vertices);

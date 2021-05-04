@@ -2,9 +2,8 @@ package elements;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.ParserConfigurationException;
-import geometries.Geometries;
-import geometries.Sphere;
-import geometries.Triangle;
+
+import geometries.*;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
@@ -12,9 +11,12 @@ import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
 import primitives.Color;
 import primitives.Point3D;
+import primitives.Vector;
 import scene.Scene;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -58,11 +60,21 @@ public class ReadXMLFile {
             for (int i = 0; i < nodeList.getLength(); i++) {
                 geoList.add(getTriangle(nodeList.item(i)));
             }
+            //get all the Polygon
+            nodeList = doc.getElementsByTagName("polygon");
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                geoList.add(getPolygon(nodeList.item(i)));
+            }
 
             //get all the sphere
             nodeList = doc.getElementsByTagName("sphere");
             for (int i = 0; i < nodeList.getLength(); i++) {
                 geoList.add(getSphere(nodeList.item(i)));
+            }
+            //get all the plane
+            nodeList = doc.getElementsByTagName("plane");
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                geoList.add(getPlane(nodeList.item(i)));
             }
 
             //set the geometries in the scene
@@ -94,6 +106,7 @@ public class ReadXMLFile {
         return geo;
     }
 
+
     /**
      * the function create a sphere from the node
      * @param node
@@ -108,6 +121,49 @@ public class ReadXMLFile {
             Point3D p0 = getP(((Element) node).getAttribute("center"));
            int r= Integer.parseInt( ((Element) node).getAttribute("radius"));
            geo=new Sphere(p0,r);
+        }
+        return geo;
+    }
+
+    /**
+     * the function create a Plane from the node
+     * @param node
+     * @return Plane
+     */
+    private static Plane getPlane(Node node) {
+
+        Plane geo=null;
+        if (node.getNodeType() == Node.ELEMENT_NODE) {
+
+            Element element = (Element) node;
+            Point3D p0 = getP(((Element) node).getAttribute("p0"));
+            Point3D v0 = getP(((Element) node).getAttribute("vector"));
+            Vector v=new Vector(v0.getX(),v0.getY(),v0.getZ());
+            geo=new Plane(p0,v);
+        }
+        return geo;
+    }
+
+    /**
+     * the function create a Polygon from the node
+     * @param node
+     * @return Polygon
+     */
+    private static Polygon getPolygon(Node node) {
+
+        Polygon geo=null;
+      Point3D[] arr=null;
+        if (node.getNodeType() == Node.ELEMENT_NODE) {
+            Element element = (Element) node;
+            int len=node.getAttributes().getLength();
+            arr=new Point3D[len];
+          //  var points=node.getAttributes();
+            for (int i=0;i<len;i++)
+            {
+                Point3D p0 = getP(((Element) node).getAttribute("p"+i));
+                arr[i]=p0;
+            }
+            geo=new Polygon(arr);
         }
         return geo;
     }
