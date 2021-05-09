@@ -7,7 +7,9 @@ import scene.Scene;
 
 import java.util.MissingResourceException;
 
-
+/**
+ * Render class make from the scene the color matrix
+ */
 public class Render {
 
     ImageWriter imageWriter;
@@ -34,7 +36,10 @@ public class Render {
         this.rayTracerBase = rayTracerBase;
         return this;
     }
+
     public void renderImage(){
+
+        //check that all the parameters OK
         try {
 
             if (imageWriter == null) {
@@ -59,7 +64,6 @@ public class Render {
                     Ray ray = camera.constructRayThroughPixel(nX, nY, j, i);
                     Color pixelColor = rayTracerBase.traceRay(ray);
                     imageWriter.writePixel(j, i, pixelColor);
-
                 }
             }
         }
@@ -69,6 +73,11 @@ public class Render {
 
     }
 
+    /**
+     * The function make the grid lines
+     * @param interval between the lines
+     * @param color of the lines
+     */
     public void printGrid(int interval, Color color){
         int nX = imageWriter.getNx();
         int nY = imageWriter.getNy();
@@ -82,7 +91,9 @@ public class Render {
             }
         }
     }
+//Turn on the function of the imageWriter writeToImage
    public void writeToImage(){
+
        if(imageWriter==null) {
            throw new MissingResourceException("missing resource", RayTracerBase.class.getName(), "");
        }

@@ -8,6 +8,8 @@ import primitives.*;
 import renderer.*;
 import scene.Scene;
 
+import static elements.ReadXMLFile.ReadFile;
+
 /**
  * Test rendering a basic image
  *
@@ -27,7 +29,7 @@ public class RenderTests {
 
         Scene scene = new Scene("Test scene")//
                 .setAmbientLight(new AmbientLight(new Color(255, 191, 191), 1)) //
-                .setBackground(new Color(75, 127, 90));
+                .setBackground(new Color(75, 127, 190));
 
         scene.geometries.add(new Sphere( new Point3D(0, 0, -100),50),
                 new Triangle(new Point3D(-100, 0, -100), new Point3D(0, 100, -100), new Point3D(-100, 100, -100)), // up left
@@ -52,9 +54,8 @@ public class RenderTests {
      */
     @Test
     public void basicRenderXml() {
-        Scene scene = new Scene("XML Test scene");
-        // enter XML file name and parse from XML file into scene object
-        // ...
+        Scene scene =  ReadFile("XML Test scene","basicRenderTestTwoColors.xml");
+
 
         ImageWriter imageWriter = new ImageWriter("xml render test", 1000, 1000);
         Render render = new Render() //

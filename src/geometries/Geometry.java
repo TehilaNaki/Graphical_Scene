@@ -13,6 +13,6 @@ public interface Geometry extends Intersectable{
     * @param point on geometrics object
     * @return normal vector on this point
     */
-   Vector getNormal(Point3D point) ;
+  public Vector getNormal(Point3D point) ;
 
 }
