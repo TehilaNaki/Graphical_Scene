@@ -12,6 +12,9 @@ import java.util.*;
  */
 public class Geometries implements Intersectable {
 
+    /**
+     * List of intersectables
+     */
    private final List<Intersectable> intersectables;
 
 
@@ -59,5 +62,12 @@ public class Geometries implements Intersectable {
      return result;
 
     }
+
+    ///צריך לממש
+    @Override
+    public List<GeoPoint> findGeoIntersections(Ray ray) {
+       return null;
+    }
+
 
 }

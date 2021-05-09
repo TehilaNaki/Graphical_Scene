@@ -32,6 +32,7 @@ public final class Coordinate {
         return isZero(coord - other.coord);
     }
 
+
     @Override
     public String toString() {
         return "" + coord;

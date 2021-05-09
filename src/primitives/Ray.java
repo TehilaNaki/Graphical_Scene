@@ -1,5 +1,7 @@
 package primitives;
 
+import geometries.Intersectable;
+import geometries.Intersectable.GeoPoint;
 import java.util.List;
 
 
@@ -99,6 +101,31 @@ public class Ray {
         return closePoint;
     }
 
+    /**
+     *
+     * @param intersections
+     * @return
+     */
+    public GeoPoint findClosestGeoPoint(List<GeoPoint> intersections){
+        double minDistance = Double.MAX_VALUE;
+        double d;
+        GeoPoint closePoint = null;
+
+        if(intersections==null){
+            return null;
+        }
+
+        for (GeoPoint geoP : intersections) {
+
+            d = geoP.point.distance(p0);
+            //check if the distance of p is smaller then minDistance
+            if (d < minDistance) {
+                minDistance = d;
+                closePoint = geoP;
+            }
+        }
+        return closePoint;
+    }
 }
 
 

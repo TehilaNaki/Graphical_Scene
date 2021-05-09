@@ -12,7 +12,7 @@ import static primitives.Util.isZero;
  * Cylinder class represent a three-dimensional cylinder- inherited from a tube and a height added to it
  * @author TehilaNaki & MeravIzhaki
  */
-public class Cylinder extends Tube implements Geometry{
+public class Cylinder extends Tube {
 
     protected final double height;
 
