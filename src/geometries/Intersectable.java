@@ -6,6 +6,7 @@ import primitives.Ray;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import static primitives.Util.isZero;
 
@@ -37,19 +38,27 @@ public interface Intersectable {
         @Override
         public boolean equals(Object o) {
             if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
+            if (!(o instanceof GeoPoint)) return false;
             GeoPoint geoPoint = (GeoPoint) o;
-            return Objects.equals(geometry, geoPoint.geometry) && Objects.equals(point, geoPoint.point);
+            return geometry.equals(geoPoint.geometry) && point.equals(geoPoint.point);
         }
 
-
+        @Override
+        public int hashCode() {
+            return Objects.hash(geometry, point);
+        }
     }
 
     /**
      * @param ray intersection in geometries
      * @return list of intersectables the the ray intersecte in geometries
      */
-    List<Point3D> findIntersections(Ray ray);
+    default List<Point3D> findIntersections(Ray ray) {
+        var geoList = findGeoIntersections(ray);
+        return geoList == null ? null
+                : geoList.stream().map(gp -> gp.point).collect(Collectors.toList());
+    }
+
 
 
     /**

@@ -82,14 +82,19 @@ public class Render {
         int nX = imageWriter.getNx();
         int nY = imageWriter.getNy();
 
-        for (int i = 0; i < nY; i++) {
+        for (int i = 0; i < nY; i+=interval) {
             for (int j = 0; j < nX; j++) {
 
-                if( i % interval == 0 || j% interval ==0) {
-                    imageWriter.writePixel(j,i,color);
-                }
+                imageWriter.writePixel(j,i,color);
             }
         }
+        for (int i = 0; i < nX; i+=interval) {
+            for (int j = 0; j < nY; j++) {
+
+                imageWriter.writePixel(i,j,color);
+            }
+        }
+
     }
 //Turn on the function of the imageWriter writeToImage
    public void writeToImage(){

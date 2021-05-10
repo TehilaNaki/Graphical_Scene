@@ -65,48 +65,6 @@ public class Sphere extends Geometry {
     }
 
 
-    @Override
-    public List<Point3D> findIntersections(Ray ray) {
-        //u=O-P0
-        //tm=v*u
-        //d=sqrt(|u|^2-tm^2)
-        //th=sqrt(r^2-d^2)
-        //t1=tm-th, t2=tm+th
-        //P1=P0+t1*v  P2=P0+t2*v
-
-        Point3D p0 = ray.getPoint();
-        Vector v = ray.getDir();
-
-        if (p0.equals(center)) {
-            return List.of(ray.getPointBy(radius));
-        }
-
-        Vector u = center.subtract(p0);
-        double tm =v.dotProduct(u);
-        double d = alignZero(Math.sqrt(u.lengthSquared() - tm * tm));
-
-        if (d >= radius) {
-            return null;
-        }
-
-        double th = alignZero(Math.sqrt(radius * radius - d * d));
-        double t1 = alignZero(tm - th);
-        double t2 = alignZero(tm + th);
-
-        if (t1 > 0 && t2 > 0) {
-            return List.of(ray.getPointBy(t1), ray.getPointBy(t2));
-        }
-
-        if (t1 > 0) {
-            return List.of(ray.getPointBy(t1));
-        }
-
-        if (t2 > 0) {
-            return List.of(ray.getPointBy(t2));
-        }
-
-        return null;
-    }
 
     @Override
     public List<GeoPoint> findGeoIntersections(Ray ray) {
