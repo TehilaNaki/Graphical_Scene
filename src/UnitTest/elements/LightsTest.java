@@ -1,4 +1,4 @@
-package UnitTest.lights;
+package UnitTest.elements;
 
 import elements.*;
 import geometries.Geometry;
