@@ -46,12 +46,9 @@ public class PointLight extends Light implements LightSource {
      * @param kL factor of the light
      * @param kQ factor of the light
      */
-    protected PointLight(Color intensity, Point3D position,double kC, double kL, double kQ) {
+    public PointLight(Color intensity, Point3D position) {
         super(intensity);
         this.position = position;
-        this.kC=kC;
-        this.kL=kL;
-        this.kQ=kQ;
     }
 
     @Override
