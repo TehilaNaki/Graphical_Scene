@@ -11,6 +11,17 @@ public class PointLight extends Light implements LightSource {
 
 
     /**
+     * create the intensity and position of the light
+     *
+     * @param intensity of the light
+     * @param position  of the light
+     */
+    public PointLight(Color intensity, Point3D position) {
+        super(intensity);
+        this.position = position;
+    }
+
+    /**
      * @param kC factor of the light
      * @return this point light.
      */
@@ -37,30 +48,17 @@ public class PointLight extends Light implements LightSource {
         return this;
     }
 
-    /**
-     * create the intensity and position of the light
-     *
-     * @param intensity of the light
-     * @param position  of the light
-     * @param kC factor of the light
-     * @param kL factor of the light
-     * @param kQ factor of the light
-     */
-    public PointLight(Color intensity, Point3D position) {
-        super(intensity);
-        this.position = position;
-    }
+
 
     @Override
     public Color getIntensity(Point3D p) {
         double distance = position.distance(p);
-        return super.getIntensity().scale(1 / (kC + kL * distance + kQ * distance * distance));
+        return super.getIntensity().scale(1d / (kC + kL * distance + kQ * distance * distance));
     }
 
     @Override
     public Vector getL(Point3D p) {
-        return position.subtract(p);
+        return p.subtract(position).normalize();
     }
-
 
 }
