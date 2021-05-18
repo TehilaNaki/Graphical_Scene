@@ -1,6 +1,7 @@
 package renderer;
 
 import elements.LightSource;
+import elements.SpotLight;
 import primitives.*;
 import scene.Scene;
 import geometries.Intersectable.GeoPoint;
@@ -55,19 +56,24 @@ public class RayTracerBasic extends RayTracerBase {
         for (LightSource lightSource : scene.lights) {
             Vector l = lightSource.getL(point.point);
             double nl = alignZero(n.dotProduct(l));
+            double specularN=1;
+            if(lightSource instanceof SpotLight)
+            {
+                specularN=((SpotLight) lightSource).getSpecularN();
+            }
             if (nl * nv > 0) { // sign(nl) == sing(nv)
                 Color lightIntensity = lightSource.getIntensity(point.point);
                 color = color.add(calcDiffusive(kd, l, n, lightIntensity),
-                        calcSpecular(ks, l, n, v, nShininess, lightIntensity));
+                        calcSpecular(ks, l, n,nl, v, nShininess, lightIntensity,specularN));
             }
         }
         return color;
     }
 
-    private Color calcSpecular(double ks, Vector l, Vector n, Vector v, int nShininess, Color lightIntensity) {
-        Vector r=l.subtract(n.scale(l.dotProduct(n)*2));
+    private Color calcSpecular(double ks, Vector l, Vector n,double nl, Vector v, int nShininess, Color lightIntensity,double specularN) {
+        Vector r=l.subtract(n.scale(nl*2));
         double vr=Math.pow(v.scale(-1).dotProduct(r),nShininess);
-        return lightIntensity.scale(ks*vr);
+        return lightIntensity.scale(ks*Math.pow(vr,specularN));
     }
 
     private Color calcDiffusive(double kd, Vector l, Vector n, Color lightIntensity) {

@@ -61,6 +61,7 @@ public class Render {
 
             for (int i = 0; i < nY; i++) {
                 for (int j = 0; j < nX; j++) {
+
                     Ray ray = camera.constructRayThroughPixel(nX, nY, j, i);
                     Color pixelColor = rayTracerBase.traceRay(ray);
                     imageWriter.writePixel(j, i, pixelColor);

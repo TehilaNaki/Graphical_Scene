@@ -21,6 +21,7 @@ public class PointLight extends Light implements LightSource {
         this.position = position;
     }
 
+
     /**
      * @param kC factor of the light
      * @return this point light.
