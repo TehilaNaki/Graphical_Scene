@@ -4,8 +4,16 @@ import primitives.Color;
 import primitives.Point3D;
 import primitives.Vector;
 
+/**
+ * Class of directional light (like sun)
+ *
+ * @author TehilaNaki & MeravIzhaki
+ */
 public class DirectionalLight extends Light implements LightSource{
 
+    /**
+     * vector of direction of light
+     */
     private Vector direction;
 
 

@@ -11,6 +11,8 @@ import static primitives.Util.alignZero;
 
 /**
  *  RayTracerBasic class extends RayTracerBase and implement the abstract function traceRay
+ *
+ * @author TehilaNaki & MeravIzhaki
  */
 public class RayTracerBasic extends RayTracerBase {
 
@@ -35,6 +37,12 @@ public class RayTracerBasic extends RayTracerBase {
         return scene.background;
     }
 
+    /**
+     * Calculate the color intensity on the point
+     * @param point on the geometry
+     * @param ray from the camera
+     * @return the color intensity
+     */
     private Color calcColor(GeoPoint point, Ray ray) {
         Color baseColor = scene.ambientLight.getIntensity().add(point.geometry.getEmission());
         // add calculated light contribution from all light sources)
@@ -42,6 +50,12 @@ public class RayTracerBasic extends RayTracerBase {
 
     }
 
+    /**
+     * Calculate the local component of the scene
+     * @param point on the geometry
+     * @param ray from the camera
+     * @return the color intensity
+     */
     private Color calcLocalEffects(GeoPoint point, Ray ray) {
 
         Vector v = ray.getDir();
@@ -70,12 +84,31 @@ public class RayTracerBasic extends RayTracerBase {
         return color;
     }
 
+    /**
+     *
+     * @param ks factor of the specular
+     * @param l vector of the
+     * @param n normal vector of the geometry point
+     * @param nl vector n dot product vector l
+     * @param v vector of ray direction
+     * @param nShininess factor of the shining
+     * @param lightIntensity color of the intensity
+     * @param specularN specular component
+     * @return calculate color
+     */
     private Color calcSpecular(double ks, Vector l, Vector n,double nl, Vector v, int nShininess, Color lightIntensity,double specularN) {
         Vector r=l.subtract(n.scale(nl*2));
         double vr=Math.pow(v.scale(-1).dotProduct(r),nShininess);
         return lightIntensity.scale(ks*Math.pow(vr,specularN));
     }
 
+    /**
+     * @param kd diffuse factor
+     * @param l vector of the
+     * @param n normal vector of the geometry point
+     * @param lightIntensity color of the intensity
+     * @return calculate color
+     */
     private Color calcDiffusive(double kd, Vector l, Vector n, Color lightIntensity) {
         double ln=Math.abs(n.dotProduct(l));
         return lightIntensity.scale(kd*ln);

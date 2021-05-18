@@ -5,9 +5,14 @@ import primitives.Ray;
 import scene.Scene;
 /**
  * RayTracerBase abstract class that use as an interface for RayTracerBasic
+ *
+ * @author TehilaNaki & MeravIzhaki
  */
 public abstract class RayTracerBase {
 
+    /**
+     * The scene of the image
+     */
     protected Scene scene;
 
     /**

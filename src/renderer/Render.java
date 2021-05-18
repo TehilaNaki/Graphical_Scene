@@ -9,34 +9,67 @@ import java.util.MissingResourceException;
 
 /**
  * Render class make from the scene the color matrix
+ *
+ * @author TehilaNaki & MeravIzhaki
  */
 public class Render {
 
+    /**
+     * Image writer of the scene
+     */
     ImageWriter imageWriter;
+    /**
+     * The scene of the image
+     */
     Scene scene;
+    /**
+     * The camera in the scene
+     */
     Camera camera;
+    /**
+     * The rays from the camera
+     */
     RayTracerBase rayTracerBase;
 
+    /**
+     * @param imageWriter of the scene
+     * @return this render
+     */
     public Render setImageWriter(ImageWriter imageWriter) {
         this.imageWriter = imageWriter;
         return  this;
     }
 
+    /**
+     * @param scene of the image
+     * @return this render
+     */
     public Render setScene(Scene scene){
         this.scene=scene;
         return this;
     }
 
+    /**
+     * @param camera of the scene
+     * @return this render
+     */
     public Render setCamera(Camera camera) {
         this.camera = camera;
         return this;
     }
 
+    /**
+     * @param rayTracerBase from the camera
+     * @return this render
+     */
     public Render setRayTracer(RayTracerBase rayTracerBase) {
         this.rayTracerBase = rayTracerBase;
         return this;
     }
 
+    /**
+     * Make the image from the elements
+     */
     public void renderImage(){
 
         //check that all the parameters OK
@@ -59,6 +92,7 @@ public class Render {
             int nX = imageWriter.getNx();
             int nY = imageWriter.getNy();
 
+            // pass through each pixel and calculate the color
             for (int i = 0; i < nY; i++) {
                 for (int j = 0; j < nX; j++) {
 
@@ -97,7 +131,10 @@ public class Render {
         }
 
     }
-//Turn on the function of the imageWriter writeToImage
+
+    /**
+     * Turn on the function of the imageWriter to writeToImage
+     */
    public void writeToImage(){
 
        if(imageWriter==null) {

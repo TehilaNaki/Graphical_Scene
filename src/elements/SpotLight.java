@@ -4,11 +4,22 @@ import primitives.Color;
 import primitives.Point3D;
 import primitives.Vector;
 
-import static primitives.Util.isZero;
 
+/**
+ * Class spot light
+ *
+ * @author TehilaNaki & MeravIzhaki
+ */
 public class SpotLight extends PointLight{
 
+    /**
+     * direction vector of the spot light
+     */
     private Vector direction;
+
+    /**
+     * specular component (default=1, no affection on the sharp of the original spot)
+     */
     private double specularN=1;
 
     /**
@@ -33,11 +44,18 @@ public class SpotLight extends PointLight{
       return super.getL(p);
     }
 
+    /**
+     * @param specularN specular component
+     * @return this spot light
+     */
     public SpotLight setSpecularN(double specularN) {
         this.specularN = specularN;
         return this;
     }
 
+    /**
+     * @return specularN
+     */
     public double getSpecularN() {
         return specularN;
     }

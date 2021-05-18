@@ -4,9 +4,21 @@ import primitives.Color;
 import primitives.Point3D;
 import primitives.Vector;
 
+/**
+ *Class of point light (like lantern)
+ *
+ * @author TehilaNaki & MeravIzhaki
+ */
 public class PointLight extends Light implements LightSource {
 
+    /**
+     * point of the position of the light
+     */
     private Point3D position;
+
+    /**
+     * the factors of the light
+     */
     private double kC = 1, kL = 0, kQ = 0;
 
 

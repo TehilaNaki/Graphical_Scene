@@ -24,6 +24,8 @@ public class LightsTest {
     private Scene scene1 = new Scene("Test scene");
     private Scene scene2 = new Scene("Test scene") //
             .setAmbientLight(new AmbientLight(new Color(java.awt.Color.WHITE), 0.15));
+    private Scene scene3=new Scene("Test scene").setAmbientLight(new AmbientLight(new Color(java.awt.Color.WHITE), 0.5));
+
     private Camera camera1 = new Camera(new Point3D(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
             .setViewPlaneSize(150, 150) //
             .setDistance(1000);
@@ -35,6 +37,8 @@ public class LightsTest {
             new Point3D(-150, -150, -150), new Point3D(150, -150, -150), new Point3D(75, 75, -150));
     private static Geometry triangle2 = new Triangle( //
             new Point3D(-150, -150, -150), new Point3D(-70, 70, -50), new Point3D(75, 75, -150));
+    private static Geometry triangle3 =  new Triangle(new Point3D(-100, 0, -100), new Point3D(0, 100, -100), new Point3D(-100, 100, -100)) // up left
+            .setEmission(new Color(java.awt.Color.GREEN));
     private static Geometry sphere = new Sphere(new Point3D(0, 0, -50), 50) //
             .setEmission(new Color(java.awt.Color.BLUE)) //
             .setMaterial(new Material().setkD(0.5).setkS(0.5).setnShininess(100));
@@ -157,7 +161,7 @@ public class LightsTest {
     }
 
     /**
-     * Produce a picture of a sphere lighted by a directional light
+     * Produce a picture of a sphere lighted by a multiple lights
      */
     @Test
     public void sphereMultiLights() {
@@ -181,14 +185,14 @@ public class LightsTest {
         render.writeToImage();
     }
     /**
-     * Produce a picture of a two triangles lighted by a directional light
+     * Produce a picture of a two triangles lighted by a multiple lights
      */
     @Test
     public void TrianglesMultiLight() {
         scene2.geometries.add(triangle1.setMaterial(new Material().setkD(0.8).setkS(0.2).setnShininess(300)), //
                 triangle2.setMaterial(new Material().setkD(0.8).setkS(0.2).setnShininess(300)));
         //direction light
-       // scene2.lights.add(new DirectionalLight(new Color(400, 30, 0), new Vector(0.65, 0, -1)));
+        scene2.lights.add(new DirectionalLight(new Color(400, 30, 0), new Vector(0.65, 0, -1)));
         //spot light
         scene2.lights.add(new SpotLight(new Color(500, 250, 250), new Vector(-150100, -1000, 1), new Point3D(10, -10, -130)) //
                .setkL(0.0001).setkQ(0.000005));
@@ -208,7 +212,7 @@ public class LightsTest {
     }
 
     /**
-     * Produce a picture of a sphere lighted by a directional light
+     * Produce a picture of a sphere lighted by a improve spot light
      */
     @Test
     public void sphereImproveSpotLights() {
@@ -223,6 +227,25 @@ public class LightsTest {
                 .setCamera(camera1) //
                 .setRayTracer(new RayTracerBasic(scene1))
                 .setScene(scene1);
+        render.renderImage();
+        render.writeToImage();
+    }
+
+    @Test
+    public void ImproveTrianglesLight() {
+        scene3.geometries.add(triangle3.setMaterial(new Material().setkD(0.8).setkS(0.2).setnShininess(300)), //
+                triangle3.setMaterial(new Material().setkD(0.8).setkS(0.2).setnShininess(300)));
+
+        //spot light
+        scene3.lights.add(new SpotLight(new Color(600, 0, 0), new Vector(1, 1, -2), new Point3D(-100,0,-100)).setSpecularN(0.5) //
+                .setkL(0.00000005).setkQ(0.000000005));
+
+        ImageWriter imageWriter = new ImageWriter("ImproveLightTriangles", 500, 500);
+        Render render = new Render()//
+                .setImageWriter(imageWriter) //
+                .setCamera(camera2) //
+                .setRayTracer(new RayTracerBasic(scene3))
+                .setScene(scene3);
         render.renderImage();
         render.writeToImage();
     }

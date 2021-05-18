@@ -8,6 +8,11 @@ import primitives.Color;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Class scene
+ *
+ * @author TehilaNaki & MeravIzhaki
+ */
 public class Scene {
 
     /**
