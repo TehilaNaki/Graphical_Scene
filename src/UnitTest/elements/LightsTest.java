@@ -147,7 +147,7 @@ public class LightsTest {
     public void trianglesSpot() {
         scene2.geometries.add(triangle1.setMaterial(new Material().setkD(0.5).setkS(0.5).setnShininess(300)),
                 triangle2.setMaterial(new Material().setkD(0.5).setkS(0.5).setnShininess(300)));
-        scene2.lights.add(new SpotLight(new Color(500, 250, 250), new Vector(-2, -2, -1), new Point3D(10, -10, -130)) //
+        scene2.lights.add(new SpotLight(new Color(500, 250, 250), new Vector(-2, -2, -1), new Point3D(10, -10, -130)).setSpecularN(1) //
                 .setkL(0.0001).setkQ(0.000005));
 
         ImageWriter imageWriter = new ImageWriter("lightTrianglesSpot", 500, 500);
@@ -233,19 +233,17 @@ public class LightsTest {
 
     @Test
     public void ImproveTrianglesLight() {
-        scene3.geometries.add(triangle3.setMaterial(new Material().setkD(0.8).setkS(0.2).setnShininess(300)), //
-                triangle3.setMaterial(new Material().setkD(0.8).setkS(0.2).setnShininess(300)));
+        scene2.geometries.add(triangle1.setMaterial(new Material().setkD(0.5).setkS(0.6).setnShininess(10)));
 
-        //spot light
-        scene3.lights.add(new SpotLight(new Color(600, 0, 0), new Vector(1, 1, -2), new Point3D(-100,0,-100)).setSpecularN(0.5) //
-                .setkL(0.00000005).setkQ(0.000000005));
+        scene2.lights.add(new SpotLight(new Color(600, 0, 250), new Vector(-2, -2, -1), new Point3D(10, -12, -130)).setSpecularN(100) //
+                .setkL(0.0001).setkQ(0.000005));
 
         ImageWriter imageWriter = new ImageWriter("ImproveLightTriangles", 500, 500);
         Render render = new Render()//
                 .setImageWriter(imageWriter) //
                 .setCamera(camera2) //
-                .setRayTracer(new RayTracerBasic(scene3))
-                .setScene(scene3);
+                .setRayTracer(new RayTracerBasic(scene2))
+                .setScene(scene2);
         render.renderImage();
         render.writeToImage();
     }
