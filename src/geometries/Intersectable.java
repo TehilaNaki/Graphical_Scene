@@ -60,7 +60,6 @@ public interface Intersectable {
     }
 
 
-
     /**
      * @param ray
      * @return

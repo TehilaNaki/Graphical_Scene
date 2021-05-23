@@ -127,6 +127,8 @@ public class Polygon extends Geometry {
                 return null;
             }
         }
+
         return List.of(new GeoPoint(this, result.get(0).point));
+
     }
 }

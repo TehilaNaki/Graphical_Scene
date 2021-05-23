@@ -39,10 +39,6 @@ public class SpotLight extends PointLight{
         return super.getIntensity(p).scale(factor);
     }
 
-    @Override
-    public Vector getL(Point3D p) {
-      return super.getL(p);
-    }
 
     /**
      * @param specularN specular component

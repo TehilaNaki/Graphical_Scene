@@ -118,6 +118,8 @@ public class Plane extends Geometry{
         }
 
         Point3D P=ray.getPointBy(t);
+
+
         //Ray crosses the plane
         return List.of(new GeoPoint(this,P));
     }

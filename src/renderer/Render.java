@@ -18,10 +18,7 @@ public class Render {
      * Image writer of the scene
      */
     ImageWriter imageWriter;
-    /**
-     * The scene of the image
-     */
-    Scene scene;
+
     /**
      * The camera in the scene
      */
@@ -40,14 +37,7 @@ public class Render {
         return  this;
     }
 
-    /**
-     * @param scene of the image
-     * @return this render
-     */
-    public Render setScene(Scene scene){
-        this.scene=scene;
-        return this;
-    }
+
 
     /**
      * @param camera of the scene
@@ -77,9 +67,6 @@ public class Render {
 
             if (imageWriter == null) {
                 throw new MissingResourceException("missing resource", ImageWriter.class.getName(), "");
-            }
-            if (scene == null) {
-                throw new MissingResourceException("missing resource", Scene.class.getName(), "");
             }
             if (camera == null) {
                 throw new MissingResourceException("missing resource", Camera.class.getName(), "");

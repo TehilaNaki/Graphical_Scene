@@ -81,8 +81,8 @@ public class Geometries implements Intersectable {
                    if (intersections == null) {
                        intersections = new LinkedList<>();
                    }
+                       intersections.addAll(geoIntersections);
 
-                   intersections.addAll(geoIntersections);
             }
         }
         return intersections;

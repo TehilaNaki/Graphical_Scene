@@ -40,7 +40,6 @@ public class RenderTests {
         ImageWriter imageWriter = new ImageWriter("base render test", 1000, 1000);
         Render render = new Render() //
                 .setImageWriter(imageWriter) //
-                .setScene(scene) //
                 .setCamera(camera) //
                 .setRayTracer(new RayTracerBasic(scene));
 
@@ -60,7 +59,6 @@ public class RenderTests {
         ImageWriter imageWriter = new ImageWriter("xml render test", 1000, 1000);
         Render render = new Render() //
                 .setImageWriter(imageWriter) //
-                .setScene(scene) //
                 .setCamera(camera) //
                 .setRayTracer(new RayTracerBasic(scene));
 
@@ -92,8 +90,8 @@ public class RenderTests {
         Render render = new Render() //
                 .setImageWriter(imageWriter) //
                 .setCamera(camera) //
-                .setRayTracer(new RayTracerBasic(scene))
-                .setScene(scene);
+                .setRayTracer(new RayTracerBasic(scene));
+
 
         render.renderImage();
         render.printGrid(100, new Color(java.awt.Color.WHITE));
