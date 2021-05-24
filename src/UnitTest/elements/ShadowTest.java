@@ -49,7 +49,7 @@ public class ShadowTest {
                 new Sphere(new Point3D(0, 0, -200), 60) //
                         .setEmission(new Color(java.awt.Color.BLUE)) //
                         .setMaterial(new Material().setkD(0.5).setkS(0.5).setnShininess(30)), //
-                new Triangle(new Point3D(-50, -20, 0), new Point3D(-20, -50, 0), new Point3D(-48, -48, -4)) //
+                new Triangle(new Point3D(-50, -20, 0), new Point3D(-20, -50, 0), new Point3D(-46, -46, 0)) //
                         .setEmission(new Color(java.awt.Color.BLUE)) //
                         .setMaterial(new Material().setkD(0.5).setkS(0.5).setnShininess(30)) //
         );
@@ -71,7 +71,7 @@ public class ShadowTest {
                 new Sphere( new Point3D(0, 0, -200),60) //
                         .setEmission(new Color(java.awt.Color.BLUE)) //
                         .setMaterial(new Material().setkD(0.5).setkS(0.5).setnShininess(30)), //
-                new Triangle(new Point3D(-60, -30, 0), new Point3D(-30, -60, 0), new Point3D(-58, -58, -4)) //
+                new Triangle(new Point3D(-62, -32, 0), new Point3D(-32, -62, 0), new Point3D(-58, -58, -4)) //
                         .setEmission(new Color(java.awt.Color.BLUE)) //
                         .setMaterial(new Material().setkD(0.5).setkS(0.5).setnShininess(30)) //
         );
@@ -115,7 +115,7 @@ public class ShadowTest {
                 new Sphere( new Point3D(0, 0, -200),60) //
                         .setEmission(new Color(java.awt.Color.BLUE)) //
                         .setMaterial(new Material().setkD(0.5).setkS(0.5).setnShininess(30)), //
-                new Triangle(new Point3D(-70, -40, 0), new Point3D(-40, -70, 0), new Point3D(-68, -68, -4)) //
+                new Triangle(new Point3D(-78, -48, 0), new Point3D(-48, -78, 0), new Point3D(-80, -80, -4)) //
                         .setEmission(new Color(java.awt.Color.BLUE)) //
                         .setMaterial(new Material().setkD(0.5).setkS(0.5).setnShininess(30)) //
         );
