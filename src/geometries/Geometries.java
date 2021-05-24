@@ -1,5 +1,6 @@
 package geometries;
 
+import primitives.Material;
 import primitives.Point3D;
 import primitives.Ray;
 
@@ -16,7 +17,7 @@ public class Geometries implements Intersectable {
     /**
      * List of intersectables
      */
-    private final List<Intersectable> intersectables;
+    public final List<Intersectable> intersectables;
 
 
     /**
@@ -87,5 +88,6 @@ public class Geometries implements Intersectable {
         }
         return intersections;
     }
+
 
 }

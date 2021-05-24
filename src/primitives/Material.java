@@ -8,9 +8,13 @@ package primitives;
 public class Material {
 
     /**
-     * factors of the diffuse and specular light
+     * factors
      */
-    public double kD=0,kS=0;
+    public double
+            kD=0,//Diffuse
+            kS=0,//Specular
+            kT=0,//Transparency
+            kR=0;//Reflection
     /**
      * factor of the shininess
      */
@@ -35,11 +39,27 @@ public class Material {
     }
 
     /**
-     * @param nShininess factor of the reflection of the material
+     * @param nShininess factor of the shine of the material
      * @return this Material
      */
     public Material setnShininess(int nShininess) {
         this.nShininess = nShininess;
+        return this;
+    }
+    /**
+     * @param kT factor of the Transparency of the material
+     * @return this Material
+     */
+    public Material setkT(double kT) {
+        this.kT = kT;
+        return this;
+    }
+    /**
+     * @param kR factor of the reflection of the material
+     * @return this Material
+     */
+    public Material setkR(double kR) {
+        this.kR = kR;
         return this;
     }
 }

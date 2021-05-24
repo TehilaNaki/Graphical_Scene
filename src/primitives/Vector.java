@@ -8,6 +8,9 @@ package primitives;
  public class Vector {
 
     private Point3D head;
+    private static final int MAX_CALC_COLOR_LEVEL = 10;
+    private static final double MIN_CALC_COLOR_K = 0.001;
+
 
 
     /**

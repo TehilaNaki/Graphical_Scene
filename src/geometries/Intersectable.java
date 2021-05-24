@@ -1,6 +1,7 @@
 package geometries;
 
 import primitives.Coordinate;
+import primitives.Material;
 import primitives.Point3D;
 import primitives.Ray;
 
@@ -65,5 +66,6 @@ public interface Intersectable {
      * @return
      */
     List<GeoPoint> findGeoIntersections (Ray ray);
+
 
 }

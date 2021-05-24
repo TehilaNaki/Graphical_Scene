@@ -37,6 +37,7 @@ public abstract class Geometry implements Intersectable{
     /**
      * @return the material of the Geometry
      */
+
     public Material getMaterial() {
         return material;
     }
