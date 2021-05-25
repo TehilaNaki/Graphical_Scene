@@ -7,6 +7,7 @@ package primitives;
  */
 public class Material {
 
+
     /**
      * factors
      */
@@ -61,5 +62,9 @@ public class Material {
     public Material setkR(double kR) {
         this.kR = kR;
         return this;
+    }
+
+    public int getnShininess(){
+        return nShininess;
     }
 }
