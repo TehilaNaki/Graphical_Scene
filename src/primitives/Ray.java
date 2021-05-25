@@ -31,7 +31,12 @@ public class Ray {
         dir = v.normalized();
     }
 
-
+    /**
+     * Creates a new ray by point,vector direction and normal.
+     * @param p0 head point of the ray
+     * @param dir direction of the ray
+     * @param normal normal of the ray
+     */
     public Ray(Point3D p0, Vector dir, Vector normal) {
         this.dir=dir;
         // make sure the normal and the direction are not orthogonal
