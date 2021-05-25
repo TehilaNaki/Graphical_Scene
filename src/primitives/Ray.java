@@ -4,6 +4,9 @@ import geometries.Intersectable;
 import geometries.Intersectable.GeoPoint;
 import java.util.List;
 
+import static primitives.Util.alignZero;
+import static primitives.Util.isZero;
+
 
 /**
  * Class Ray is the basic class representing a ray
@@ -12,8 +15,10 @@ import java.util.List;
  * @author TehilaNaki and MeravIzhaki
  */
 public class Ray {
+
     private final Point3D p0;
     private final Vector dir;
+    private static final double DELTA = 0.1;
 
     /**
      * Creates a new ray by point and vector.
@@ -26,13 +31,29 @@ public class Ray {
         dir = v.normalized();
     }
 
+
+    public Ray(Point3D p0, Vector dir, Vector normal) {
+        this.dir=dir;
+        // make sure the normal and the direction are not orthogonal
+        double nv = alignZero(normal.dotProduct(dir));
+
+        // if not orthogonal
+        if (!isZero(nv)) {
+            // create new vector to help move the head of
+            // the vector to the correct position
+            Vector fixVector = normal.scale(nv > 0 ? DELTA : -DELTA);
+            // move the head of the vector in the right direction
+            this.p0=p0.add(fixVector);
+        }
+        else this.p0=p0;
+    }
     /**
      * Returns a point of the ray.
      *
      * @return A shallow copy of the point.
      */
     public Point3D getPoint() {
-        return p0;
+            return p0;
     }
 
     /**
@@ -60,7 +81,15 @@ public class Ray {
      * @return A point on the ray.
      */
     public Point3D getPointBy(double t) {
-        return p0.add(dir.scale(t));
+
+        try {
+            Vector v= dir.scale(t);
+            v.IsZero();
+            return p0.add(v);
+        }
+        catch (Exception exception) {
+            return p0;
+        }
     }
 
     @Override
