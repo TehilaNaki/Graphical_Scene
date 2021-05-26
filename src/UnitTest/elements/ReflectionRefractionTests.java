@@ -153,7 +153,7 @@ public class ReflectionRefractionTests {
     @Test
     public void Bonus() {
         Camera camera = new Camera(new Point3D(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
-                .setViewPlaneSize(300, 300).setDistance(1000);
+                .setViewPlaneSize(600, 600).setDistance(1000);
 
         scene.setAmbientLight(new AmbientLight(new Color(java.awt.Color.WHITE), 0.15));
 
@@ -171,47 +171,47 @@ public class ReflectionRefractionTests {
                         .setEmission(new Color(0, 120, 220)) //
                         .setMaterial(new Material().setkR(1).setkT(0.5)),
                 new Sphere( new Point3D(140, -150, -100),25) //
-                        .setEmission(new Color(java.awt.Color.pink)) //
-                        .setMaterial(new Material().setkD(0.2).setkS(0.2).setnShininess(30).setkR(1)),
+                        .setEmission(new Color(java.awt.Color.cyan)) //
+                        .setMaterial(new Material().setkD(0.2).setkS(0.2).setnShininess(10).setkR(0.4)),
                 new Sphere( new Point3D(140, -60, -100),15) //
-                        .setEmission(new Color(java.awt.Color.pink)) //
-                        .setMaterial(new Material().setkD(0.2).setkS(0.2).setnShininess(30).setkR(1)),
+                        .setEmission(new Color(java.awt.Color.cyan)) //
+                        .setMaterial(new Material().setkD(0.2).setkS(0.2).setnShininess(10).setkR(0.4)),
                 new Sphere( new Point3D(140, 10, -100),25) //
-                        .setEmission(new Color(java.awt.Color.pink)) //
-                        .setMaterial(new Material().setkD(0.2).setkS(0.2).setnShininess(30).setkR(1)),
+                        .setEmission(new Color(java.awt.Color.cyan)) //
+                        .setMaterial(new Material().setkD(0.2).setkS(0.2).setnShininess(10).setkR(0.4)),
                 new Sphere( new Point3D(140, 80, -100),15) //
-                        .setEmission(new Color(java.awt.Color.pink)) //
-                        .setMaterial(new Material().setkD(0.2).setkS(0.2).setnShininess(30).setkR(1)),
+                        .setEmission(new Color(java.awt.Color.cyan)) //
+                        .setMaterial(new Material().setkD(0.2).setkS(0.2).setnShininess(10).setkR(0.4)),
                 new Sphere( new Point3D(-100, 150, 50),35) //
                         .setEmission(new Color(java.awt.Color.cyan)) //
                         .setMaterial(new Material().setkD(0.2).setkS(0.2).setnShininess(30).setkR(1)),
                 new Sphere( new Point3D(-75, 100, 50),45) //
                         .setEmission(new Color(java.awt.Color.magenta)) //
-                        .setMaterial(new Material().setkD(0.2).setkS(0.2).setnShininess(30).setkR(1)),
+                        .setMaterial(new Material().setkD(0.2).setkS(0.2).setnShininess(30).setkT(0.6)),
                 new Sphere( new Point3D(-55, 100, 50),35) //
-                        .setEmission(new Color(java.awt.Color.pink)) //
-                        .setMaterial(new Material().setkD(0.2).setkS(0.2).setnShininess(30).setkR(1)),
+                        .setEmission(new Color(java.awt.Color.cyan)) //
+                        .setMaterial(new Material().setkD(0.2).setkS(0.2).setnShininess(10).setkR(0.3)),
                 new Sphere( new Point3D(-30, 100, 50),25) //
                         .setEmission(new Color(java.awt.Color.magenta)) //
-                        .setMaterial(new Material().setkD(0.2).setkS(0.2).setnShininess(30).setkR(1)),
+                        .setMaterial(new Material().setkD(0.2).setkS(0.2).setnShininess(30).setkT(0.6)),
                 new Sphere( new Point3D(-10, 100, 50),20) //
-                        .setEmission(new Color(java.awt.Color.magenta)) //
-                        .setMaterial(new Material().setkD(0.2).setkS(0.2).setnShininess(30).setkR(1)),
+                        .setEmission(new Color(java.awt.Color.cyan)) //
+                        .setMaterial(new Material().setkD(0.2).setkS(0.2).setnShininess(10).setkR(0.5)),
                 new Sphere( new Point3D(15, 100, 50),15) //
                         .setEmission(new Color(java.awt.Color.magenta)) //
-                        .setMaterial(new Material().setkD(0.2).setkS(0.2).setnShininess(30).setkR(1)),
+                        .setMaterial(new Material().setkD(0.2).setkS(0.2).setnShininess(30).setkT(0.6)),
                 new Sphere( new Point3D(40, 100, 50),10) //
-                        .setEmission(new Color(java.awt.Color.magenta)) //
-                        .setMaterial(new Material().setkD(0.2).setkS(0.2).setnShininess(30).setkR(1)),
+                        .setEmission(new Color(java.awt.Color.cyan)) //
+                        .setMaterial(new Material().setkD(0.2).setkS(0.2).setnShininess(10).setkR(0.6)),
                 new Sphere( new Point3D(50, 100, 50),5) //
                         .setEmission(new Color(java.awt.Color.magenta)) //
-                        .setMaterial(new Material().setkD(0.2).setkS(0.2).setnShininess(30).setkR(1)),
+                        .setMaterial(new Material().setkD(0.2).setkS(0.2).setnShininess(30).setkT(0.6)),
                 new Sphere( new Point3D(70, -10, -100),10) //
-                        .setEmission(new Color(java.awt.Color.pink)) //
-                        .setMaterial(new Material().setkD(0.2).setkS(0.2).setnShininess(30).setkR(1)),
+                        .setEmission(new Color(java.awt.Color.cyan)) //
+                        .setMaterial(new Material().setkD(0.2).setkS(0.2).setnShininess(10).setkR(0.4)),
                 new Sphere( new Point3D(75, 75, 50),30) //
                         .setEmission(new Color(java.awt.Color.yellow)) //
-                        .setMaterial(new Material().setkD(0.2).setkS(0.2).setnShininess(20).setkT(0.6)),
+                        .setMaterial(new Material().setkD(0.2).setkS(0.2).setnShininess(10).setkT(0.6)),
                 new Sphere( new Point3D(-350, -300, -400),400) //
                         .setEmission(new Color(0, 0, 100)) //
                         .setMaterial(new Material().setkD(0.25).setkS(0.25).setnShininess(20).setkT(0.5)),
