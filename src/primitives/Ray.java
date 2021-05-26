@@ -44,13 +44,12 @@ public class Ray {
 
         // if not orthogonal
         if (!isZero(nv)) {
-            // create new vector to help move the head of
-            // the vector to the correct position
-            Vector fixVector = normal.scale(nv > 0 ? DELTA : -DELTA);
+            Vector moveVector = normal.scale(nv > 0 ? DELTA : -DELTA);
             // move the head of the vector in the right direction
-            this.p0=p0.add(fixVector);
+            this.p0=p0.add(moveVector);
         }
-        else this.p0=p0;
+        else
+            this.p0=p0;
     }
     /**
      * Returns a point of the ray.
@@ -86,7 +85,6 @@ public class Ray {
      * @return A point on the ray.
      */
     public Point3D getPointBy(double t) {
-
         try {
             Vector v= dir.scale(t);
             v.IsZero();

@@ -131,19 +131,21 @@ public class RayTracerBasic extends RayTracerBase {
    private double transparency(LightSource ls, Vector l, Vector n, GeoPoint geoPoint) {
 
         Vector lightDirection = l.scale(-1); // from point to light source
-
         Ray lightRay = new Ray(geoPoint.point, lightDirection,n);
-
         List<GeoPoint> intersections = scene.geometries.findGeoIntersections(lightRay);
 
-        if (intersections == null) return 1.0;
-        double ktr = 1.0;
+        if (intersections == null)
+            return 1.0;
 
+        double ktr = 1.0;
         double lightDistance = ls.getDistance(geoPoint.point);
+
         for (GeoPoint gp : intersections) {
+
             if (alignZero(gp.point.distance(geoPoint.point)-lightDistance) <= 0) {
                 ktr *= gp.geometry.getMaterial().kT;
-                if (ktr < MIN_CALC_COLOR_K) return 0.0;
+                if (ktr < MIN_CALC_COLOR_K)
+                    return 0.0;
             }
         }
         return ktr;
@@ -173,8 +175,7 @@ public class RayTracerBasic extends RayTracerBase {
      * @return the color intensity
      */
     private Color calcColor(GeoPoint gPoint, Ray ray) {
-        return calcColor(gPoint, ray, MAX_CALC_COLOR_LEVEL, INITIAL_K)
-                .add(scene.ambientLight.getIntensity());
+        return calcColor(gPoint, ray, MAX_CALC_COLOR_LEVEL, INITIAL_K).add(scene.ambientLight.getIntensity());
     }
 
     /**
@@ -186,10 +187,9 @@ public class RayTracerBasic extends RayTracerBase {
      */
     private Ray constructReflectedRay(Vector n, Point3D point, Ray ray) {
         Vector v = ray.getDir();
-        double vn = v.dotProduct(n);
-        Vector vnn = n.scale(-2 * vn);
-        Vector r = v.add(vnn);
-        // use the constructor with 3 arguments to move the head if needed
+        Vector vn = n.scale(-2 *  v.dotProduct(n));
+        Vector r = v.add(vn);
+        // use the constructor with 3 arguments to move the head
         return new Ray(point, r, n);
     }
 
@@ -204,11 +204,8 @@ public class RayTracerBasic extends RayTracerBase {
      */
    private Color calcGlobalEffects(GeoPoint geoPoint,Ray ray, int level, double k) {
        Color color = Color.BLACK;
-
        Material material = geoPoint.geometry.getMaterial();
-
        double KKr = k * material.kR;
-
        // vector normal
        Vector n = geoPoint.geometry.getNormal(geoPoint.point);
 
