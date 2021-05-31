@@ -89,4 +89,17 @@ public class ImageWriter {
         image.setRGB(xIndex, yIndex, color.getColor().getRGB());
     }
 
+    /**
+     * The function writePixel writes a color of a specific pixel into pixel colo matrix
+     * @param xIndex X axis index of the pixel
+     * @param yIndex Y axis index of the pixel
+     *  @param color  final int RGB of the pixel
+     */
+    public void writePixel(int xIndex, int yIndex, int color) {
+        image.setRGB(xIndex, yIndex, color);
+    }
+
+    public BufferedImage getImage() {
+        return image;
+    }
 }

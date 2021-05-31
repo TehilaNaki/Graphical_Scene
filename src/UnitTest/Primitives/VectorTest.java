@@ -161,7 +161,7 @@ public class VectorTest {
         //check if the normalize function creates a new vector
         assertSame("ERROR: normalize() function creates a new vector", vCopy, vCopy.normalize());
         //check if the vector returned is the unit vector
-        assertTrue("ERROR: normalize() result is not a unit vector",isZero(vCopy.normalize().length() - 1));
+        assertEquals(1,vCopy.normalize().length(),0.0001,"ERROR: normalize() result is not a unit vector");
 
     }
     /**
