@@ -1,8 +1,6 @@
 package geometries;
 
-import primitives.Point3D;
-import primitives.Ray;
-import primitives.Vector;
+import primitives.*;
 
 import java.util.List;
 
@@ -50,7 +48,18 @@ public class Plane extends Geometry{
         Vector u=p2.subtract(p3);
         normal=v.crossProduct(u).normalize();
     }
-
+    /**
+     * constructor get point and normal for Plane and emissionLight
+     *
+     * @param emissionLight
+     * @param point3D       point in the plane
+     * @param normal        normal to Plane
+     */
+    public Plane(Color emissionLight, Point3D point3D, Vector normal) {
+        super(emissionLight,new Material());
+        q0=point3D;
+        this.normal=normal;
+    }
     /**
      * Returns a point on the plane.
      * @return A shallow copy of the point.

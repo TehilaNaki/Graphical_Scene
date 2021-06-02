@@ -8,6 +8,8 @@ import geometries.Intersectable;
 import primitives.*;
 import scene.Scene;
 import geometries.Intersectable.GeoPoint;
+
+import java.util.LinkedList;
 import java.util.List;
 
 import static primitives.Util.alignZero;
@@ -261,6 +263,14 @@ public class RayTracerBasic extends RayTracerBase {
         } else {
             return ray.findClosestGeoPoint(intersections);
         }
+    }
+
+    public Color AverageColor(LinkedList<Ray> rays){
+        Color color=Color.BLACK;
+        for( Ray ray:rays){
+            color=color.add(traceRay(ray));
+        }
+        return color.reduce(Double.valueOf(rays.size()));
     }
 
 

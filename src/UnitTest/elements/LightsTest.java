@@ -1,14 +1,9 @@
 package UnitTest.elements;
 
 import elements.*;
-import geometries.Geometry;
-import geometries.Sphere;
-import geometries.Triangle;
+import geometries.*;
 import org.junit.Test;
-import primitives.Color;
-import primitives.Material;
-import primitives.Point3D;
-import primitives.Vector;
+import primitives.*;
 import renderer.ImageWriter;
 import renderer.RayTracerBasic;
 import renderer.Render;
@@ -28,10 +23,10 @@ public class LightsTest {
 
     private Camera camera1 = new Camera(new Point3D(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
             .setViewPlaneSize(150, 150) //
-            .setDistance(1000);
+            .setDistance(1000).setNumOfRays(30);
     private Camera camera2 = new Camera(new Point3D(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
             .setViewPlaneSize(200, 200) //
-            .setDistance(1000);
+            .setDistance(1000).setNumOfRays(50);
 
     private static Geometry triangle1 = new Triangle( //
             new Point3D(-150, -150, -150), new Point3D(150, -150, -150), new Point3D(75, 75, -150));
@@ -239,5 +234,6 @@ public class LightsTest {
         render.renderImage();
         render.writeToImage();
     }
+
 
 }

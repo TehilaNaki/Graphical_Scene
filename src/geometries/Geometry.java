@@ -19,7 +19,13 @@ public abstract class Geometry implements Intersectable{
     private Material material=new Material();
 
 
+    public Geometry(){
 
+    }
+    public Geometry(Color emission, Material material) {
+        emission = emission;
+        material = material;
+    }
     /**
     * @param point on geometrics object
     * @return normal vector on this point

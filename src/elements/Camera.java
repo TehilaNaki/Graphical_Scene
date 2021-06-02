@@ -4,7 +4,12 @@ import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Random;
+
 import static primitives.Util.isZero;
+import static primitives.Util.random;
 
 /**
  * Camera object in 3d scene for creating rays through pixels.
@@ -20,6 +25,7 @@ public class Camera {
     private double distance;
     private double width;
     private double height;
+    private int numOfRays = 0; //num of rays in every pixel(default = 1)
 
     /**
      * Constructs a camera with location, to and up vectors.
@@ -154,6 +160,38 @@ public class Camera {
      * @return A ray going through the given pixel.
      */
     public Ray constructRayThroughPixel(int nX, int nY, int j, int i) {
+        Point3D pIJ=CalculatCenterPointInPixel(nX,nY,j,i);
+        Vector vIJ=pIJ.subtract(p0);
+
+        return new Ray(p0,vIJ);
+    }
+
+
+    public LinkedList<Ray> constructRayPixel(int nX, int nY, int j, int i) {
+        if (isZero(distance))
+            throw new IllegalArgumentException("distance can't be 0");
+
+        LinkedList<Ray> rays = new LinkedList<>();
+
+        double rX = width / nX;
+        double rY = height / nY;
+
+        double  randX,randY;
+
+        Point3D pCenterPixel = CalculatCenterPointInPixel(nX,nY,j,i);
+        rays.add(new Ray(p0, pCenterPixel.subtract(p0)));
+
+        Point3D pInPixel;
+        for (int k = 0; k < numOfRays; k++) {
+                randX= random(-rX/2,rX/2);
+                randY =  random(-rY/2,rY/2);
+                pInPixel = new Point3D(pCenterPixel.getX()+randX,pCenterPixel.getY()+randY,pCenterPixel.getZ());
+                rays.add(new Ray(p0, pInPixel.subtract(p0)));
+        }
+        return rays;
+    }
+
+    private Point3D CalculatCenterPointInPixel(int nX, int nY, int j, int i) {
         Point3D pC = p0.add(vTo.scale(distance));
         Point3D pIJ=pC;
 
@@ -169,9 +207,12 @@ public class Camera {
         if(!isZero(yI)){
             pIJ = pIJ.add(vUp.scale(yI));
         }
+     return pIJ;
+    }
 
-        Vector vIJ=pIJ.subtract(p0);
 
-        return new Ray(p0,vIJ);
+    public Camera setNumOfRays(int numOfRays) {
+        this.numOfRays = numOfRays;
+        return this;
     }
 }

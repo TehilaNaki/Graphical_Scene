@@ -105,7 +105,6 @@ public class CameraIntegrationTest {
                     if (list == null) {
                         continue;
                     }
-
                     if (intersections.get(id) == null) {
                         intersections.set(id, new ArrayList<>());
                     }

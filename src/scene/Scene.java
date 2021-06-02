@@ -81,4 +81,14 @@ public class Scene {
         this.lights = lights;
         return this;
     }
+
+    /**
+     * Add some lightSource to list
+     *
+     * @param lights some LightSource
+     **/
+    public void addLights(LightSource... lights) {
+        for (LightSource lightSource : lights)
+             this.lights.add(lightSource);
+    }
 }
