@@ -235,4 +235,66 @@ public class ReflectionRefractionTests {
         render.renderImage();
         render.writeToImage();
     }
+
+    @Test
+    public void miniProject1() {
+        Camera camera = new Camera(new Point3D(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
+                .setViewPlaneSize(500, 500).setDistance(1000).setNumOfRays(40);
+
+        scene.setAmbientLight(new AmbientLight(new Color(java.awt.Color.white), 0.17));
+
+        scene.geometries.add( //
+                new Triangle(new Point3D(-150, -150, -115), new Point3D(150, -150, -135), new Point3D(75, 75, -150)) //
+                        .setMaterial(new Material().setkD(0.5).setkS(0.5).setnShininess(60)).setEmission(new Color(java.awt.Color.magenta)), //
+                new Sphere( new Point3D(140, 30, -100),40) //
+                        .setEmission(new Color(java.awt.Color.cyan)) //
+                        .setMaterial(new Material().setkD(0.2).setkS(0.2).setnShininess(10).setkR(0.4)),
+
+                new Sphere( new Point3D(-100, 170, 50),45) //
+                        .setEmission(new Color(java.awt.Color.BLACK)) //
+                        .setMaterial(new Material().setkD(0.2).setkS(0.2).setnShininess(30).setkR(1)),
+                new Sphere( new Point3D(-105, 120, 80),55) //
+                        .setEmission(new Color(java.awt.Color.RED)) //
+                        .setMaterial(new Material().setkD(0.2).setkS(0.2).setnShininess(10).setkT(0.5)),
+                new Sphere( new Point3D(-40, 120, 50),35) //
+                        .setEmission(new Color(java.awt.Color.pink)) //
+                        .setMaterial(new Material().setkD(0.2).setkS(0.2).setnShininess(10).setkR(0.4)),
+                new Sphere( new Point3D(15, 120, 70),25) //
+                        .setEmission(new Color(java.awt.Color.RED)) //
+                        .setMaterial(new Material().setkD(0.2).setkS(0.2).setnShininess(10).setkR(0.4).setkT(0.4)),
+                new Sphere( new Point3D(50, 140, -50),15) //
+                        .setEmission(new Color(java.awt.Color.pink)) //
+                        .setMaterial(new Material().setkD(0.2).setkS(0.2).setnShininess(30).setkR(0.4)),
+                new Sphere( new Point3D(70, -10, -100),20) //
+                        .setEmission(new Color(java.awt.Color.cyan)) //
+                        .setMaterial(new Material().setkD(0.2).setkS(0.2).setnShininess(10).setkR(0.4)),
+                new Sphere( new Point3D(75, 75, -100),40) //
+                        .setMaterial(new Material().setkD(0.5).setkS(0.5).setkT(0.5).setnShininess(30)).setEmission(new Color(java.awt.Color.magenta)),
+                new Sphere( new Point3D(-350, -300, -400),500) //
+                        .setEmission(new Color(0, 0, 150)) //
+                        .setMaterial(new Material().setkD(0.4).setkS(0.3).setnShininess(60).setkT(0.3)),
+                new Sphere( new Point3D(-350, -300, -300),300) //
+                        .setEmission(new Color(200, 120, 120)) //
+                        .setMaterial(new Material().setkD(0.4).setkS(0.3).setnShininess(60).setkT(0.3)),
+                new Sphere( new Point3D(-350, -300, -300),150) //
+                        .setEmission(new Color(java.awt.Color.red)) //
+                        .setMaterial(new Material().setkD(0.4).setkS(0.3).setnShininess(60).setkT(0.3)),
+                new Polygon(new Point3D(200,100,0),new Point3D(-70, 70, -140),new Point3D(140, -140, -125)).setEmission(new Color(java.awt.Color.blue)) //
+             .setMaterial(new Material().setkD(0.2).setkS(0.2).setnShininess(30).setkT(0.6)));
+
+
+
+        scene.lights.add(new SpotLight(new Color(700, 400, 400),new Vector(0, 0, -1), new Point3D(60, 50, 0)) //
+                .setkQ(2E-7)); //.setkQ(0.000005));
+        scene.lights.add(new SpotLight(new Color(1020, 400, 400), new Vector(-1, -1, -4), new Point3D(-750, -750, -150)));
+        scene.lights.add(new DirectionalLight(new Color(400, 30, 0), new Vector(0.65, 0, -1)));
+        ImageWriter imageWriter = new ImageWriter("miniProject1", 500, 500);
+        Render render = new Render() //
+                .setImageWriter(imageWriter) //
+                .setCamera(camera) //
+                .setRayTracer(new RayTracerBasic(scene));
+
+        render.renderImage();
+        render.writeToImage();
+    }
 }
