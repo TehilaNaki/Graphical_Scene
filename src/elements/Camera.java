@@ -1,5 +1,6 @@
 package elements;
 
+import primitives.Coordinate;
 import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
@@ -18,14 +19,39 @@ import static primitives.Util.random;
  */
 public class Camera {
 
-    final Point3D p0;
-    final Vector vTo;
-    final Vector vUp;
-    final Vector vRight;
-    private double distance;
+
+    /**
+     * Camera's location.
+     */
+    private Point3D p0;
+    /**
+     * Camera's upper direction.
+     */
+    private final Vector vUp;
+    /**
+     * Camera's forward direction.
+     */
+    private final Vector vTo;
+    /**
+     * Camera's right direction
+     */
+    private Vector vRight;
+    /**
+     * View plane's width.
+     */
     private double width;
+    /**
+     * View plane's height.
+     */
     private double height;
-    private int numOfRays = 0; //num of rays in every pixel(default = 1)
+    /**
+     * The distance between the camera and the view plane.
+     */
+    private double distance;
+    /**
+     * The number of rays sent by the camera.
+     */
+    private int numOfRays = 0;
 
     /**
      * Constructs a camera with location, to and up vectors.
@@ -51,6 +77,15 @@ public class Camera {
      */
     public Point3D getP0() {
         return p0;
+    }
+
+    /**
+     *  set 3 double number of the point
+     */
+    public Camera setP0(double x,double y,double z) {
+        this.p0 = new Point3D(x,y,z);
+        return this;
+
     }
 
     /**
@@ -100,12 +135,13 @@ public class Camera {
      *
      * @throws IllegalArgumentException When width illegal.
      */
-    public void setWidth(double width) {
+    public Camera setWidth(double width) {
         if (width <= 0) {
 
             throw new IllegalArgumentException("Illegal value of width");
         }
         this.width = width;
+        return this;
     }
 
     /**
@@ -113,12 +149,13 @@ public class Camera {
      *
      * @throws IllegalArgumentException When height illegal.
      */
-    public void setHeight(double height) {
+    public Camera setHeight(double height) {
         if (height <= 0) {
 
             throw new IllegalArgumentException("Illegal value of width");
         }
         this.height = height;
+        return this;
     }
 
     /**
@@ -160,14 +197,14 @@ public class Camera {
      * @return A ray going through the given pixel.
      */
     public Ray constructRayThroughPixel(int nX, int nY, int j, int i) {
-        Point3D pIJ=CalculatCenterPointInPixel(nX,nY,j,i);
+        Point3D pIJ=CalculateCenterPointInPixel(nX,nY,j,i);
         Vector vIJ=pIJ.subtract(p0);
 
         return new Ray(p0,vIJ);
     }
 
 
-    public LinkedList<Ray> constructRayPixel(int nX, int nY, int j, int i) {
+    public LinkedList<Ray> constructRayPixelAA(int nX, int nY, int j, int i) {
         if (isZero(distance))
             throw new IllegalArgumentException("distance can't be 0");
 
@@ -178,7 +215,7 @@ public class Camera {
 
         double  randX,randY;
 
-        Point3D pCenterPixel = CalculatCenterPointInPixel(nX,nY,j,i);
+        Point3D pCenterPixel = CalculateCenterPointInPixel(nX,nY,j,i);
         rays.add(new Ray(p0, pCenterPixel.subtract(p0)));
 
         Point3D pInPixel;
@@ -191,7 +228,16 @@ public class Camera {
         return rays;
     }
 
-    private Point3D CalculatCenterPointInPixel(int nX, int nY, int j, int i) {
+    /**
+     * The function calculate the center point of the pixel.
+     *
+     * @param nX Total number of pixels in the x dimension.
+     * @param nY Total number of pixels in the y dimension.
+     * @param j  The index of the pixel on the x dimension.
+     * @param i  The index of the pixel on the y dimension.
+     * @return the center point in the pixel.
+     */
+    private Point3D CalculateCenterPointInPixel(int nX, int nY, int j, int i) {
         Point3D pC = p0.add(vTo.scale(distance));
         Point3D pIJ=pC;
 
@@ -211,8 +257,58 @@ public class Camera {
     }
 
 
+    /**
+     * Chaining method for setting the  number of rays constructed by the camera.
+     * @param numOfRays The number of rays constructed.
+     * @return The camera itself.
+     */
     public Camera setNumOfRays(int numOfRays) {
         this.numOfRays = numOfRays;
         return this;
     }
+
+
+    /**
+     * Adds the given amount to the camera's position
+     * @return the current camera
+     */
+    public Camera move(Vector amount) {
+        p0 = p0.add(amount);
+        return this;
+    }
+
+    /**
+     * Adds x, y, z to the camera's position
+     * @return the current camera
+     */
+    public Camera move(double x, double y, double z) {
+        return move(new Vector(x, y, z));
+    }
+
+    /**
+     * Rotates the camera around the axes with the given angles
+     * @param amount vector of angles
+     * @return the current camera
+     */
+    public Camera rotate(Vector amount) {
+        return rotate(amount.getX(), amount.getY(), amount.getZ());
+    }
+
+
+    /**
+     * Rotates the camera around the axes with the given angles
+     * @param x angles to rotate around the x axis
+     * @param y angles to rotate around the y axis
+     * @param z angles to rotate around the z axis
+     * @return the current camera
+     */
+    public Camera rotate(double x, double y, double z) {
+        vTo.rotateX(x).rotateY(y).rotateZ(z);
+        vUp.rotateX(x).rotateY(y).rotateZ(z);
+        vRight = vTo.crossProduct(vUp);
+
+        return this;
+    }
+
+
 }

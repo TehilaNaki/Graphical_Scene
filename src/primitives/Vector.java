@@ -36,7 +36,26 @@ package primitives;
          newP.IsZero();
          head=new Point3D(x,y,z);
      }
+    /**
+     * Returns the vector's x coordinate
+     */
+    public double getX() {
+        return head.getX();
+    }
 
+    /**
+     * Returns the vector's y coordinate
+     */
+    public double getY() {
+        return head.getY();
+    }
+
+    /**
+     * Returns the vector's z coordinate
+     */
+    public double getZ() {
+        return head.getZ();
+    }
     /**
      * Returns the vector's head.
      * @return A shallow copy of the point3d head.
@@ -134,6 +153,56 @@ package primitives;
     public Vector normalized() {
         Vector newV= new Vector(head.x, head.y, head.z);
         return newV.normalize();
+    }
+
+    /**
+     * Rotates the vector around the x axis
+     * @param alpha the amount to rotate in degrees
+     * @return the current vector
+     */
+    public Vector rotateX(double alpha) {
+        double radianAlpha = alpha * Math.PI / 180;
+
+        double x = head.getX();
+        double y = head.getY() * Math.cos(radianAlpha) - head.getZ() * Math.sin(radianAlpha);
+        double z = head.getY() * Math.sin(radianAlpha) + head.getZ() * Math.cos(radianAlpha);
+
+        head = new Point3D(x, y, z);
+        return this;
+    }
+
+
+    /**
+     * Rotates the vector around the y axis
+     * @param alpha the amount to rotate in degrees
+     * @return the current vector
+     */
+    public Vector rotateY(double alpha) {
+        double radianAlpha = alpha * Math.PI / 180;
+
+        double x = head.getX() * Math.cos(radianAlpha) + head.getZ() * Math.sin(radianAlpha);
+        double y = head.getY();
+        double z = -head.getX() * Math.sin(radianAlpha) + head.getZ() * Math.cos(radianAlpha);
+
+        head = new Point3D(x, y, z);
+        return this;
+    }
+
+
+    /**
+     * Rotates the vector around the z axis
+     * @param alpha the amount to rotate in degrees
+     * @return the current vector
+     */
+    public Vector rotateZ(double alpha) {
+        double radianAlpha = alpha * Math.PI / 180;
+
+        double x = head.getX() * Math.cos(radianAlpha) - head.getY() * Math.sin(radianAlpha);
+        double y = head.getX() * Math.sin(radianAlpha) + head.getY() * Math.cos(radianAlpha);
+        double z = head.getZ();
+
+        head = new Point3D(x, y, z);
+        return this;
     }
 
     @Override

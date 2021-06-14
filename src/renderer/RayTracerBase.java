@@ -3,6 +3,9 @@ package renderer;
 import primitives.Color;
 import primitives.Ray;
 import scene.Scene;
+
+import java.util.LinkedList;
+
 /**
  * RayTracerBase abstract class that use as an interface for RayTracerBasic
  *
@@ -29,4 +32,6 @@ public abstract class RayTracerBase {
      * @return Color
      */
     public abstract Color traceRay(Ray ray);
+
+    public abstract Color averageColor(LinkedList<Ray> rays);
 }

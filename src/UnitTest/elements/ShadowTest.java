@@ -37,7 +37,9 @@ public class ShadowTest {
 
         Render render = new Render(). //
                 setImageWriter(new ImageWriter("shadowSphereTriangleInitial", 400, 400)) //
-                .setCamera(camera) //
+                .setCamera(camera)
+                .setMultithreading(5)
+                .setPrintPercent(true)
                 .setRayTracer(new RayTracerBasic(scene));
         render.renderImage();
         render.writeToImage();
@@ -60,6 +62,8 @@ public class ShadowTest {
         Render render = new Render(). //
                 setImageWriter(new ImageWriter("shadowSphereTriangleInitial1", 400, 400)) //
                 .setCamera(camera) //
+                .setMultithreading(5)
+                .setPrintPercent(true)
                 .setRayTracer(new RayTracerBasic(scene));
         render.renderImage();
         render.writeToImage();
@@ -82,6 +86,8 @@ public class ShadowTest {
         Render render = new Render(). //
                 setImageWriter(new ImageWriter("shadowSphereTriangleInitial2", 400, 400)) //
                 .setCamera(camera) //
+                .setMultithreading(5)
+                .setPrintPercent(true)
                 .setRayTracer(new RayTracerBasic(scene));
         render.renderImage();
         render.writeToImage();
@@ -104,6 +110,8 @@ public class ShadowTest {
         Render render = new Render(). //
                 setImageWriter(new ImageWriter("shadowSphereTriangleInitial3", 400, 400)) //
                 .setCamera(camera) //
+                .setMultithreading(5)
+                .setPrintPercent(true)
                 .setRayTracer(new RayTracerBasic(scene));
         render.renderImage();
         render.writeToImage();
@@ -126,6 +134,8 @@ public class ShadowTest {
         Render render = new Render(). //
                 setImageWriter(new ImageWriter("shadowSphereTriangleInitial4", 400, 400)) //
                 .setCamera(camera) //
+                .setMultithreading(5)
+                .setPrintPercent(true)
                 .setRayTracer(new RayTracerBasic(scene));
         render.renderImage();
         render.writeToImage();
@@ -155,6 +165,8 @@ public class ShadowTest {
         Render render = new Render() //
                 .setImageWriter(new ImageWriter("shadowTrianglesSphere", 600, 600)) //
                 .setCamera(camera) //
+                .setMultithreading(5)
+                .setPrintPercent(true)
                 .setRayTracer(new RayTracerBasic(scene));
         render.renderImage();
         render.writeToImage();

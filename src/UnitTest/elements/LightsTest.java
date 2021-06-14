@@ -23,10 +23,10 @@ public class LightsTest {
 
     private Camera camera1 = new Camera(new Point3D(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
             .setViewPlaneSize(150, 150) //
-            .setDistance(1000).setNumOfRays(30);
+            .setDistance(1000).setNumOfRays(81);
     private Camera camera2 = new Camera(new Point3D(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
             .setViewPlaneSize(200, 200) //
-            .setDistance(1000).setNumOfRays(50);
+            .setDistance(1000).setNumOfRays(81);
 
     private static Geometry triangle1 = new Triangle( //
             new Point3D(-150, -150, -150), new Point3D(150, -150, -150), new Point3D(75, 75, -150));
@@ -50,6 +50,8 @@ public class LightsTest {
         Render render = new Render()//
                 .setImageWriter(imageWriter) //
                 .setCamera(camera1) //
+                .setMultithreading(5)
+                .setPrintPercent(true)
                 .setRayTracer(new RayTracerBasic(scene1));
         render.renderImage();
         render.writeToImage();
@@ -68,6 +70,8 @@ public class LightsTest {
         Render render = new Render()//
                 .setImageWriter(imageWriter) //
                 .setCamera(camera1) //
+                .setMultithreading(5)
+                .setPrintPercent(true)
                 .setRayTracer(new RayTracerBasic(scene1));
         render.renderImage();
         render.writeToImage();
@@ -86,6 +90,8 @@ public class LightsTest {
         Render render = new Render()//
                 .setImageWriter(imageWriter) //
                 .setCamera(camera1) //
+                .setMultithreading(5)
+                .setPrintPercent(true)
                 .setRayTracer(new RayTracerBasic(scene1));
 
         render.renderImage();
@@ -105,6 +111,8 @@ public class LightsTest {
         Render render = new Render()//
                 .setImageWriter(imageWriter) //
                 .setCamera(camera2) //
+                .setMultithreading(5)
+                .setPrintPercent(true)
                 .setRayTracer(new RayTracerBasic(scene2));
         render.renderImage();
         render.writeToImage();
@@ -124,6 +132,8 @@ public class LightsTest {
         Render render = new Render()//
                 .setImageWriter(imageWriter) //
                 .setCamera(camera2) //
+                .setMultithreading(5)
+                .setPrintPercent(true)
                 .setRayTracer(new RayTracerBasic(scene2));
 
         render.renderImage();
@@ -144,6 +154,8 @@ public class LightsTest {
         Render render = new Render()//
                 .setImageWriter(imageWriter) //
                 .setCamera(camera2) //
+                .setMultithreading(5)
+                .setPrintPercent(true)
                 .setRayTracer(new RayTracerBasic(scene2));
         render.renderImage();
         render.writeToImage();
@@ -168,6 +180,8 @@ public class LightsTest {
         Render render = new Render()//
                 .setImageWriter(imageWriter) //
                 .setCamera(camera1) //
+                .setMultithreading(5)
+                .setPrintPercent(true)
                 .setRayTracer(new RayTracerBasic(scene1));
         render.renderImage();
         render.writeToImage();
@@ -193,6 +207,8 @@ public class LightsTest {
         Render render = new Render()//
                 .setImageWriter(imageWriter) //
                 .setCamera(camera2) //
+                .setMultithreading(5)
+                .setPrintPercent(true)
                 .setRayTracer(new RayTracerBasic(scene2));
         render.renderImage();
         render.writeToImage();
@@ -212,6 +228,8 @@ public class LightsTest {
         Render render = new Render()//
                 .setImageWriter(imageWriter) //
                 .setCamera(camera1) //
+                .setMultithreading(5)
+                .setPrintPercent(true)
                 .setRayTracer(new RayTracerBasic(scene1));
 
         render.renderImage();
@@ -229,6 +247,8 @@ public class LightsTest {
         Render render = new Render()//
                 .setImageWriter(imageWriter) //
                 .setCamera(camera2) //
+                .setMultithreading(5)
+                .setPrintPercent(true)
                 .setRayTracer(new RayTracerBasic(scene2));
 
         render.renderImage();

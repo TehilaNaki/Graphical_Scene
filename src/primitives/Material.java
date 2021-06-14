@@ -12,10 +12,11 @@ public class Material {
      * factors
      */
     public double
-            kD=0,//Diffuse
-            kS=0,//Specular
-            kT=0,//Transparency
-            kR=0;//Reflection
+            kD=0, //Diffuse
+            kS=0, //Specular
+            kT=0, //Transparency
+            kR=0, //Reflection
+            kG=1; //Glossy
     /**
      * factor of the shininess
      */
@@ -61,6 +62,15 @@ public class Material {
      */
     public Material setkR(double kR) {
         this.kR = kR;
+        return this;
+    }
+    /**
+     * Chaining method for setting the glossiness of the material.
+     * @param kG the glossiness to set, value in range [0,1]
+     * @return the current material
+     */
+    public Material setkG(double kG) {
+        this.kG = Math.pow(kG, 0.5);
         return this;
     }
 
