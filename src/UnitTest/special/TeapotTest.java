@@ -561,7 +561,7 @@ public class TeapotTest {
      */
     @Test
     public void teapot1() {
-            scene.lights.add(new PointLight(new Color(500, 500, 500), new Point3D(100, 0, -100)) //
+            scene.lights.add(new PointLight(new Color(500, 500, 500), new Point3D(100, 0, -100))//
                     .setkQ(0.000001));
             setupTeapot();
 
@@ -572,7 +572,7 @@ public class TeapotTest {
                     new Vector(0, 1, 0)) //
                     .setDistance(1000)
                     .setViewPlaneSize(200, 200)
-                    .setNumOfRays(100);
+                    .setNumOfRays(50);
             ImageWriter imageWriter = new ImageWriter("teapot", 800, 800);
             Render render = new Render() //
                     .setCamera(camera) //
@@ -581,6 +581,7 @@ public class TeapotTest {
                     .setPrintPercent(true)
                     .setRayTracer(new RayTracerBasic(scene));
             render.renderImage();
+            render.setMultithreading(3).setPrintPercent(true);
             render.printGrid(50, new Color(java.awt.Color.YELLOW));
             render.writeToImage();
     }
@@ -622,6 +623,7 @@ public class TeapotTest {
             ImageWriter imageWriter = new ImageWriter("teapotAnimation/teapotFrame" + (i + 1), 800, 800);
             render.setImageWriter(imageWriter);
             render.renderImage();
+            render.setMultithreading(3).setPrintPercent(true);
             render.writeToImage();
         }
     }
