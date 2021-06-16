@@ -76,6 +76,9 @@ public class Project {
                 .setDistance(800)
                 .setNumOfRays(20);
 
+
+               // .setFocus(new Point3D(0,0,0),300);
+
         Scene scene = new Scene("Test Scene");
         setLights(scene);
         setGeometries(scene);
@@ -135,34 +138,34 @@ public class Project {
                 new Sphere(new Point3D(80, -28, 0), 22)
                         .setEmission(new Color(30,40,50))
                        .setMaterial(new Material()
-                                .setkR(1.0).setkG(0.8)),
+                                .setkR(0.8)),
 
                 new Sphere(new Point3D(-45, -45, -5), 5)
                         .setEmission(new Color(60,0,0))
                         .setMaterial(new Material()
-                                .setkR(1.0).setkG(0.8)),
+                                .setkR(0.8).setkG(0.95)),
 
                 //triangles
 
                 new Triangle(a,g,h)
                         .setEmission(new Color(0, 75, 66))
                         .setMaterial(new Material()
-                                .setkD(0.6).setkS(0.4)
+                              .setkD(0.6).setkS(0.4).setkT(0.8)
                                 .setnShininess(80)),
                 new Triangle(a,b,h)
                         .setEmission(new Color(0, 75, 66))
                         .setMaterial(new Material()
-                                .setkD(0.6).setkS(0.4)
+                              .setkD(0.6).setkS(0.4).setkT(0.8)
                                 .setnShininess(80)),
                 new Triangle(a,b,g)
                         .setEmission(new Color(0, 75, 66))
                         .setMaterial(new Material()
-                                .setkD(0.6).setkS(0.4)
+                              .setkD(0.6).setkS(0.4).setkT(0.8)
                                 .setnShininess(80)),
                 new Triangle(g,b,h)
                         .setEmission(new Color(0, 75, 66))
                         .setMaterial(new Material()
-                                .setkD(0.6).setkS(0.4)
+                              .setkD(0.6).setkS(0.4).setkT(0.8)
                            .setnShininess(80)),
 
                 //cylinder
@@ -172,18 +175,19 @@ public class Project {
                         13, 50)
                         .setEmission(new Color(0,100,70))
                         .setMaterial(new Material()
-                                .setkD(0.6).setkS(0.4)
+                              .setkD(0.6).setkS(0.4).setkT(0.8)
                                 .setnShininess(50)),
 
-                //square
 
+                //square
+              //1
                 new Polygon(new Point3D(-25,-50,-30),
                         new Point3D(-25,-50,30),
                         new Point3D(15,-50,30),
                         new Point3D(15,-50,-30))
                         .setEmission(new Color(java.awt.Color.magenta))
                         .setMaterial(new Material()
-                                .setkD(0.6).setkS(0.4)
+                              .setkD(0.6).setkS(0.4).setkT(0.8).setkT(0.8)
                                 .setnShininess(50)),
                 new Polygon(new Point3D(-25,-25,-30),
                         new Point3D(-25,-25,30),
@@ -191,7 +195,7 @@ public class Project {
                         new Point3D(15,-25,-30))
                         .setEmission(new Color(java.awt.Color.magenta))
                         .setMaterial(new Material()
-                                .setkD(0.6).setkS(0.4)
+                              .setkD(0.6).setkS(0.4).setkT(0.8)
                                 .setnShininess(50)),
                 new Polygon(new Point3D(-25,-50,-30),
                         new Point3D(-25,-50,30),
@@ -199,7 +203,7 @@ public class Project {
                         new Point3D(-25,-25,-30))
                         .setEmission(new Color(java.awt.Color.magenta))
                         .setMaterial(new Material()
-                                .setkD(0.6).setkS(0.4)
+                              .setkD(0.6).setkS(0.4).setkT(0.8)
                                 .setnShininess(50)),
                 new Polygon(new Point3D(15,-50,-30),
                         new Point3D(15,-50,30),
@@ -207,7 +211,7 @@ public class Project {
                         new Point3D(15,-25,-30))
                         .setEmission(new Color(java.awt.Color.magenta))
                         .setMaterial(new Material()
-                                .setkD(0.6).setkS(0.4)
+                              .setkD(0.6).setkS(0.4).setkT(0.8)
                                 .setnShininess(50)),
                 new Polygon(new Point3D(-25,-50,30),
                         new Point3D(15,-50,30),
@@ -215,7 +219,7 @@ public class Project {
                         new Point3D(-25,-25,30))
                         .setEmission(new Color(java.awt.Color.magenta))
                         .setMaterial(new Material()
-                                .setkD(0.6).setkS(0.4)
+                              .setkD(0.6).setkS(0.4).setkT(0.8)
                                 .setnShininess(50)),
                 new Polygon(new Point3D(-25,-50,-30),
                         new Point3D(15,-50,-30),
@@ -223,56 +227,56 @@ public class Project {
                         new Point3D(-25,-25,-30))
                         .setEmission(new Color(java.awt.Color.magenta))
                         .setMaterial(new Material()
-                                .setkD(0.6).setkS(0.4)
+                              .setkD(0.6).setkS(0.4).setkT(0.8)
                                 .setnShininess(50)),
                 //2
                 new Polygon(new Point3D(-15,-25,-20),
                         new Point3D(-15,-25,20),
                         new Point3D(5,-25,20),
                         new Point3D(5,-25,-20))
-                        .setEmission(new Color(java.awt.Color.pink))
+                       .setEmission(new Color(167,167,167))
                         .setMaterial(new Material()
-                                .setkR(1.0).setkD(0.6).setkS(0.4).setkT(0.2)
+                                .setkR(0.1).setkD(0.5).setkS(0.5).setkT(0.2)
                                 .setnShininess(50)),
                 new Polygon(new Point3D(-15,-15,-20),
                         new Point3D(-15,-15,20),
                         new Point3D(5,-15,20),
                         new Point3D(5,-15,-20))
-                        .setEmission(new Color(java.awt.Color.pink))
+                        .setEmission(new Color(167,167,167))
                         .setMaterial(new Material()
-                                .setkR(1.0).setkD(0.6).setkS(0.4).setkT(0.2)
+                                .setkR(0.1).setkD(0.5).setkS(0.5).setkT(0.2)
                                 .setnShininess(50)),
                 new Polygon(new Point3D(-15,-25,-20),
                         new Point3D(-15,-25,20),
                         new Point3D(-15,-15,20),
                         new Point3D(-15,-15,-20))
-                        .setEmission(new Color(java.awt.Color.pink))
+                       .setEmission(new Color(167,167,167))
                         .setMaterial(new Material()
-                                .setkR(1.0).setkD(0.6).setkS(0.4).setkT(0.2)
+                                .setkR(0.1).setkD(0.5).setkS(0.5).setkT(0.2)
                                 .setnShininess(50)),
                 new Polygon(new Point3D(5,-25,-20),
                         new Point3D(5,-25,20),
                         new Point3D(5,-15,20),
                         new Point3D(5,-15,-20))
-                        .setEmission(new Color(java.awt.Color.pink))
+                       .setEmission(new Color(167,167,167))
                         .setMaterial(new Material()
-                                .setkR(1.0).setkD(0.6).setkS(0.4).setkT(0.2)
+                                .setkR(0.1).setkD(0.5).setkS(0.5).setkT(0.2)
                                 .setnShininess(50)),
                 new Polygon(new Point3D(-15,-25,20),
                         new Point3D(5,-25,20),
                         new Point3D(5,-15,20),
                         new Point3D(-15,-15,20))
-                        .setEmission(new Color(java.awt.Color.pink))
+                       .setEmission(new Color(167,167,167))
                         .setMaterial(new Material()
-                                .setkR(1.0).setkD(0.6).setkS(0.4).setkT(0.2)
+                                .setkR(0.1).setkD(0.5).setkS(0.5).setkT(0.2)
                                 .setnShininess(50)),
                 new Polygon(new Point3D(-15,-25,-20),
                         new Point3D(5,-25,-20),
                         new Point3D(5,-15,-20),
                         new Point3D(-15,-15,-20))
-                        .setEmission(new Color(java.awt.Color.pink))
+                       .setEmission(new Color(167,167,167))
                         .setMaterial(new Material()
-                                .setkR(1.0).setkD(0.6).setkS(0.4).setkT(0.2)
+                                .setkR(0.1).setkD(0.5).setkS(0.5).setkT(0.2)
                                 .setnShininess(50)),
 
 
@@ -284,14 +288,14 @@ public class Project {
                         new Point3D(100, -50, -150))
                         .setEmission(new Color(40, 40, 40))
                         .setMaterial(new Material()
-                                .setkD(0.6).setkS(0.4)
+                              .setkD(0.6).setkS(0.4).setkT(0.8)
                                 .setnShininess(50)),
                 //front block
                 new Polygon(
-                        new Point3D(10, -50, 75),
-                        new Point3D(10, 40, 75),
-                        new Point3D(35, 40, 75),
-                        new Point3D(35, -50, 75))
+                        new Point3D(40, -50, 85),
+                        new Point3D(40, 30, 85),
+                        new Point3D(70, 30, 85),
+                        new Point3D(70, -50, 85))
                         .setEmission(new Color(40, 40, 40))
                         .setMaterial(new Material()
                                 .setkT(1.0).setkG(0.8)),
@@ -305,6 +309,7 @@ public class Project {
                                 .setkT(1.0).setkG(0.8))
 
 
+
                 /*
                 new Polygon(
                         new Point3D(-100, -50, -150),
@@ -313,7 +318,7 @@ public class Project {
                         new Point3D(100, -50, -150))
                         .setEmission(new Color(40, 40, 40))
                         .setMaterial(new Material()
-                                .setkD(0.6).setkS(0.4)
+                              .setkD(0.6).setkS(0.4).setkT(0.8)
                                 .setnShininess(50))
                                 */
 

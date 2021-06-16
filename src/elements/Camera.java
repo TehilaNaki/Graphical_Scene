@@ -42,7 +42,7 @@ public class Camera {
      * View plane's height.
      */
     private double height;
-    private boolean focus;
+    private boolean focus=false;
     private Point3D focalPix = null;
     public double disFocal = 0;
     /**
@@ -216,9 +216,9 @@ public class Camera {
         List<Ray> lcorner=new LinkedList<>();
 
         //up
-        double yu = nY/(2*height);//-(i - (nY - 1) / 2d) * (height / nY);
+        double yu = nY/(height*2);
         //right
-        double xr = nX/(2*width);//(j - (nX - 1) / 2d) * (width / nX);
+        double xr = nX/(width*2);
 
         //left up
         if(!isZero(xr)){
@@ -391,7 +391,7 @@ public class Camera {
     }
      private boolean isFocus(int j,int i)
      {
-        if(focalPix.getX()<j&&j<focalPix.getX()+disFocal&&focalPix.getY()<i&&i<focalPix.getY()+disFocal)
+        if(focalPix.getX()<=j&&j<=focalPix.getX()+disFocal&&focalPix.getY()<=i&&i<=focalPix.getY()+disFocal)
           return true;
         return false;
      }

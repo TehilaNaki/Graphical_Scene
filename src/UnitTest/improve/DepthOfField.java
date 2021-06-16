@@ -21,7 +21,7 @@ public class DepthOfField {
     @Test
     public void depth() {
         Camera camera = new Camera(new Point3D(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
-                .setViewPlaneSize(150, 150).setDistance(1000).setNumOfRays(10);//.setFocus(new Point3D(0,0,0),300);
+                .setViewPlaneSize(150, 150).setDistance(1000).setNumOfRays(10).setFocus(new Point3D(0,0,0),200);
 
         scene.geometries.add( //
                 new Sphere( new Point3D(-20, -10, -50),50) //

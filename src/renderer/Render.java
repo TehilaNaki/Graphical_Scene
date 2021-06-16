@@ -197,12 +197,12 @@ public class Render {
                 for (int j = j1; j < j1 + nX / level; j++) {
                         int currentPixel = i * nX + j;
                         lastPercent = printPercent(currentPixel,nX*nY, lastPercent);
-                     imageWriter.writePixel(j, i, c);
+                        imageWriter.writePixel(j, i, c);
                 }
             }
         }
         //different color  low level
-       else if(numOfSame==9)
+       else if(numOfSame>6)
             {
                 adaptiv9(j1,i1/2,j2/2,i2,nX,nY,level*2);
                 adaptiv9(j2,j2/2,j2+j2/2,i2,nX,nY,level*2);
