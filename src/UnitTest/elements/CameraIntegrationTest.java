@@ -96,22 +96,25 @@ public class CameraIntegrationTest {
 
             for (int j = 0; j < nX; ++j) {
 
-                Ray pixelRay = cam.constructRayThroughPixel(nX, nY, j, i);
+                List<Ray> pixelRay = cam.constructRayThroughPixel(nX, nY, j, i);
 
                 // checking every intersectable to find intersections with each one.
-                for (int id = 0; id < intersectables.length; id++) {
-                    List<Point3D> list = intersectables[id].findIntersections(pixelRay);
+                for (Ray r:pixelRay) {
 
-                    if (list == null) {
-                        continue;
-                    }
-                    if (intersections.get(id) == null) {
-                        intersections.set(id, new ArrayList<>());
-                    }
 
-                    intersections.get(id).addAll(list);
+                    for (int id = 0; id < intersectables.length; id++) {
+                        List<Point3D> list = intersectables[id].findIntersections(r);
+
+                        if (list == null) {
+                            continue;
+                        }
+                        if (intersections.get(id) == null) {
+                            intersections.set(id, new ArrayList<>());
+                        }
+
+                        intersections.get(id).addAll(list);
+                    }
                 }
-
             }
 
         }

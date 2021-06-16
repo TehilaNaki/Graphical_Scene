@@ -55,6 +55,7 @@ public interface Intersectable {
      * @return list of intersectables the the ray intersecte in geometries
      */
     default List<Point3D> findIntersections(Ray ray) {
+
         var geoList = findGeoIntersections(ray);
         return geoList == null ? null
                 : geoList.stream().map(gp -> gp.point).collect(Collectors.toList());

@@ -41,7 +41,8 @@ public class RenderTests {
         Render render = new Render() //
                 .setImageWriter(imageWriter) //
                 .setCamera(camera) //
-                .setRayTracer(new RayTracerBasic(scene));
+                .setRayTracer(new RayTracerBasic(scene))
+                ;
 
         render.renderImage();
         render.printGrid(100, new Color(java.awt.Color.YELLOW));
@@ -78,12 +79,12 @@ public class RenderTests {
 
         scene.geometries.add(new Sphere( new Point3D(0, 0, -100),50) //
                         .setEmission(new Color(java.awt.Color.CYAN)), //
-                new Triangle(new Point3D(-100, 0, -100), new Point3D(0, 100, -100), new Point3D(-100, 100, -100)) // up left
+                new Triangle(new Point3D(-200, 0, -100), new Point3D(0, 200, -100), new Point3D(-200, 200, -100)) // up left
                         .setEmission(new Color(java.awt.Color.GREEN)),
-                new Triangle(new Point3D(100, 0, -100), new Point3D(0, 100, -100), new Point3D(100, 100, -100)), // up right
-                new Triangle(new Point3D(-100, 0, -100), new Point3D(0, -100, -100), new Point3D(-100, -100, -100)) // down left
+                new Triangle(new Point3D(200, 0, -100), new Point3D(0, 200, -100), new Point3D(200, 200, -100)), // up right
+                new Triangle(new Point3D(-200, 0, -100), new Point3D(0, -200, -100), new Point3D(-200, -200, -100)) // down left
                         .setEmission(new Color(java.awt.Color.RED)),
-                new Triangle(new Point3D(100, 0, -100), new Point3D(0, -100, -100), new Point3D(100, -100, -100)) // down right
+                new Triangle(new Point3D(200, 0, -100), new Point3D(0, -200, -100), new Point3D(200, -200, -100)) // down right
                         .setEmission(new Color(java.awt.Color.BLUE)));
 
         ImageWriter imageWriter = new ImageWriter("color render test", 1000, 1000);

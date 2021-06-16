@@ -192,6 +192,21 @@ public class RayTracerBasic extends RayTracerBase {
         return calcColor(gPoint, ray, MAX_CALC_COLOR_LEVEL, INITIAL_K).add(scene.ambientLight.getIntensity());
     }
 
+    /**
+     * construct a reflected ray from the geometry
+     * @param n normal vector of the point on the geometry
+     * @param point on the geometry
+     * @param ray from the geometry
+     * @return new reflected ray
+     */
+    private Ray constructReflectedRay(Vector n, Point3D point, Ray ray) {
+        Vector v = ray.getDir();
+        Vector vn = n.scale(-2 *  v.dotProduct(n));
+        Vector r = v.add(vn);
+        // use the constructor with 3 arguments to move the head
+        return new Ray(point, r, n);
+    }
+
 
     /**
      * Calculates the reflection and the refraction
@@ -248,6 +263,17 @@ public class RayTracerBasic extends RayTracerBase {
     private Color calcGlobalEffect(Ray ray, int level, double kx, double kkx) {
         GeoPoint gp = findClosestIntersection(ray);
         return (gp == null ? scene.background : calcColor(gp, ray, level - 1, kkx)).scale(kx);
+    }
+
+    /**
+     * construct the refracted ray of the point on the geometry
+     * @param n normal vector
+     * @param point on the geometry
+     * @param ray from the geometry
+     * @return new ray
+     */
+    private Ray constructRefractedRay(Vector n, Point3D point, Ray ray) {
+        return new Ray(point, ray.getDir(), n);
     }
 
 

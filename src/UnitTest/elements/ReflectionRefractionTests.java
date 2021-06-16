@@ -40,7 +40,6 @@ public class ReflectionRefractionTests {
                 .setImageWriter(new ImageWriter("refractionTwoSpheres", 500, 500)) //
                 .setCamera(camera) //
                 .setMultithreading(5)
-                .setPrintPercent(true)
                 .setRayTracer(new RayTracerBasic(scene));
         render.renderImage();
         render.writeToImage();
@@ -81,7 +80,6 @@ public class ReflectionRefractionTests {
                 .setImageWriter(imageWriter) //
                 .setCamera(camera) //
                 .setMultithreading(10)
-                .setPrintPercent(true)
                 .setRayTracer(new RayTracerBasic(scene));
 
         render.renderImage();
@@ -116,7 +114,6 @@ public class ReflectionRefractionTests {
                 .setImageWriter(imageWriter) //
                 .setCamera(camera) //
                 .setMultithreading(5)
-                .setPrintPercent(true)
                 .setRayTracer(new RayTracerBasic(scene));
 
         render.renderImage();
@@ -153,7 +150,6 @@ public class ReflectionRefractionTests {
                 .setImageWriter(imageWriter) //
                 .setCamera(camera) //
                 .setMultithreading(5)
-                .setPrintPercent(true)
                 .setRayTracer(new RayTracerBasic(scene));
 
         render.renderImage();
@@ -239,7 +235,6 @@ public class ReflectionRefractionTests {
         Render render = new Render() //
                 .setImageWriter(imageWriter) //
                 .setMultithreading(5)
-                .setPrintPercent(true)
                 .setCamera(camera) //
                 .setRayTracer(new RayTracerBasic(scene));
 
@@ -306,7 +301,6 @@ public class ReflectionRefractionTests {
                     .setImageWriter(imageWriter) //
                     .setCamera(camera) //
                     .setMultithreading(5)
-                    .setPrintPercent(true)
                     .setRayTracer(new RayTracerBasic(scene));
 
             render.renderImage();
@@ -342,7 +336,6 @@ public class ReflectionRefractionTests {
                     .setImageWriter(imageWriter) //
                     .setCamera(camera) //
                     .setMultithreading(5)
-                    .setPrintPercent(true)
                     .setRayTracer(new RayTracerBasic(scene));
 
             render.renderImage();

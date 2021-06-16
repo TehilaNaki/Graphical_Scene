@@ -12,19 +12,20 @@ import java.util.MissingResourceException;
  * Class for rendering a scene with ray tracing.
  */
 public class Render {
+
     /**
      * Image writer of the scene
      */
-    ImageWriter imageWriter=null;
+    ImageWriter imageWriter = null;
 
     /**
      * The camera in the scene
      */
-    Camera camera=null;
+    Camera camera = null;
     /**
      * The rays from the camera
      */
-    RayTracerBase rayTracerBase=null;
+    RayTracerBase rayTracerBase = null;
 
     /**
      *
@@ -37,10 +38,11 @@ public class Render {
     /**
      *
      */
-    private boolean printPercent = false;
 
+    public static int lastPercent = -1;
     /**
      * Chaining method for setting the image writer
+     *
      * @param imageWriter the image writer to set
      * @return the current render
      */
@@ -51,6 +53,7 @@ public class Render {
 
     /**
      * Chaining method for setting the camera
+     *
      * @param camera the camera to set
      * @return the current render
      */
@@ -61,6 +64,7 @@ public class Render {
 
     /**
      * Chaining method for setting the ray tracer
+     *
      * @param rayTracer the ray tracer to set
      * @return the current render
      */
@@ -74,9 +78,10 @@ public class Render {
      * If set to 1, the render won't use the thread pool.
      * If set to greater than 1, the render will use the thread pool with the given threads.
      * If set to 0, the thread pool will pick the number of threads.
+     *
      * @param threads number of threads to use
-     * @exception IllegalArgumentException when threads is less than 0
      * @return the current render
+     * @throws IllegalArgumentException when threads is less than 0
      */
     public Render setMultithreading(int threads) {
         if (threads < 0) {
@@ -99,21 +104,14 @@ public class Render {
         return this;
     }
 
-    /**
-     * Chaining method for making the render to print the progress of the rendering in percents.
-     * @param print if true, prints the percents
-     * @return the current render
-     */
-    public Render setPrintPercent(boolean print) {
-        printPercent = print;
-        return this;
-    }
+
 
     /**
      * Renders the image
      *
-     * @exception UnsupportedOperationException when the render didn't receive all the arguments.
+     * @throws UnsupportedOperationException when the render didn't receive all the arguments.
      */
+
     public void renderImage() {
         try {
             if (imageWriter == null) {
@@ -122,45 +120,110 @@ public class Render {
             if (camera == null) {
                 throw new MissingResourceException("Missing resource", Camera.class.getName(), "");
             }
-            if (rayTracerBase== null) {
+            if (rayTracerBase == null) {
                 throw new MissingResourceException("Missing resource", RayTracerBase.class.getName(), "");
             }
 
             int nX = imageWriter.getNx();
             int nY = imageWriter.getNy();
 
-            //rendering the image when multi-threaded
+            //rendering the image with multi-threaded
             if (threadPool != null) {
                 nextPixel = new Pixel(0, 0);
                 threadPool.execute();
-                if (printPercent) {
+
                     printPercentMultithreaded(); // blocks the main thread until finished and prints the progress
-                }
+
                 threadPool.join();
                 return;
             }
 
             // rendering the image when single-threaded
-            int lastPercent = -1;
-            int pixels = nX * nY;
+             adaptiv9(0,nY/2,nX/2,0,nX,nY,1);
+
             LinkedList<Ray> rays;
-            for (int i = 0; i < nY; i++) {
-                for (int j = 0; j < nX; j++) {
-                    if (printPercent) {
-                        int currentPixel = i * nX + j;
-                        lastPercent = printPercent(currentPixel, pixels, lastPercent);
-                    }
-                    castRay(nX, nY, j, i);
-                }
-            }
+
             // prints the 100% percent
-            if (printPercent) {
-                printPercent(pixels, pixels, lastPercent);
-            }
-        } catch (MissingResourceException e) {
+                printPercent(nX*nY, nX*nY, lastPercent);
+        }
+        catch (MissingResourceException e) {
             throw new UnsupportedOperationException("Render didn't receive " + e.getClassName());
         }
+
+}
+
+    public int sameColor9(int j1,int i1,int j2,int i2,int j3,int i3,int j4,int i4,int j5,int i5,int j6,int i6,int j7,int i7,int j8,int i8,int j9,int i9,int nX,int nY)
+    {
+        Color c1= rayTracerBase.traceRay(camera.constructOneRayPixel(nX, nY, j1, i1));
+        Color c2 =rayTracerBase.traceRay(camera.constructOneRayPixel(nX, nY, j2, i2));
+        Color c3=rayTracerBase.traceRay(camera.constructOneRayPixel(nX, nY, j3, i3));
+        Color c4=rayTracerBase.traceRay(camera.constructOneRayPixel(nX, nY, j4, i4));
+        Color c5=rayTracerBase.traceRay(camera.constructOneRayPixel(nX, nY, j5, i5));
+        Color c6=rayTracerBase.traceRay(camera.constructOneRayPixel(nX, nY, j6, i6));
+        Color c7=rayTracerBase.traceRay(camera.constructOneRayPixel(nX, nY,j7 , i7));
+        Color c8=rayTracerBase.traceRay(camera.constructOneRayPixel(nX, nY,j8 , i8));
+        Color c9=rayTracerBase.traceRay(camera.constructOneRayPixel(nX, nY,j9 , i9));
+        int sum=0;
+        if(c1==c2)
+            sum++;
+        if(c2==c3)
+            sum++;
+        if(c3==c4)
+            sum++;
+        if(c4==c5)
+            sum++;
+        if (c5 == c6 )
+            sum++;
+        if(c6 == c7 )
+            sum++;
+        if (c7 == c8 )
+            sum++;
+        if( c8 == c9)
+            sum++;
+        return sum;
     }
+
+
+    public void adaptiv9(int j1,int i1,int j2,int i2,int nX,int nY,int level) {
+        int numOfSame=sameColor9(j1,i1,j2,i2,j2*2,i1,j2,i1*2,j2,i1,j2/2,i1,j2+j2/2,i1,j2,i1/2,i1+nX/(level*2),i1+nY/(level*2),nX,nY);
+       //if it the same color
+        if(numOfSame==8) {
+            LinkedList<Ray> rays;
+            rays = camera.constructRayPixelAA(nX, nY, j1, i1);
+            Color c = rayTracerBase.averageColor(rays);
+            //pass through each pixel and calculate the color
+            System.out.println(level);
+            for (int i = i2; i < i2 + nY / level; i++) {
+                for (int j = j1; j < j1 + nX / level; j++) {
+                        int currentPixel = i * nX + j;
+                        lastPercent = printPercent(currentPixel,nX*nY, lastPercent);
+                     imageWriter.writePixel(j, i, c);
+                }
+            }
+        }
+        //different color  low level
+       else if(numOfSame==9)
+            {
+                adaptiv9(j1,i1/2,j2/2,i2,nX,nY,level*2);
+                adaptiv9(j2,j2/2,j2+j2/2,i2,nX,nY,level*2);
+                adaptiv9(j1,i1+i1/2,j2/2,i1,nX,nY,level *2);
+                adaptiv9(j2,i1+i1/2,j2+j2/2,i1,nX,nY,level*2);
+            }
+            else
+            {
+                LinkedList<Ray> rays;
+                //pass through each pixel and calculate the color
+                for (int i = i2; i < i2+nY/level; i++) {
+                    for (int j = j1; j < j1+nX/level; j++) {
+                            int currentPixel = i * nX + j;
+                            lastPercent = printPercent(currentPixel, nX*nY, lastPercent);
+                             castRay(nX, nY, j, i);
+                    }
+                }
+            }
+        }
+
+
 
     /**
      * Casts a ray through a given pixel and writes the color to the image.
@@ -221,10 +284,10 @@ public class Render {
      * If finished to draw all pixels, returns {@code null}.
      */
     private synchronized Pixel getNextPixel() {
-        if (printPercent) {
+
             // notifies the main thread in order to print the percent
             notifyAll();
-        }
+
 
         Pixel result = new Pixel();
         int nX = imageWriter.getNx();
@@ -272,11 +335,11 @@ public class Render {
         int lastPercent = -1;
 
         while (nextPixel.row < nY) {
-            // waits until got update from the rendering threads
-            synchronized(this) {
-                try {
-                    wait();
-                } catch (InterruptedException e) { }
+        // waits until got update from the rendering threads
+            synchronized (this) {
+                try { wait(); }
+                catch (InterruptedException e) {
+                }
             }
 
             int currentPixel = nextPixel.row * nX + nextPixel.col;
@@ -284,17 +347,20 @@ public class Render {
         }
     }
 
-    /**
-     * Helper class to represent a pixel to draw in a multithreading rendering.
-     */
-    private static class Pixel {
-        public int col, row;
 
-        public Pixel(int col, int row) {
-            this.col = col;
-            this.row = row;
-        }
+/**
+ * Helper class to represent a pixel to draw in a multithreading rendering.
+ */
+private static class Pixel {
+    public int col, row;
 
-        public Pixel() {}
+    public Pixel(int col, int row) {
+        this.col = col;
+        this.row = row;
     }
+
+    public Pixel() {}
 }
+
+}
+
