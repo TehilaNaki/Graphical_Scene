@@ -212,41 +212,43 @@ public class Camera {
 
     private List<Ray> CalculatCornerRayInPixel(Point3D center,int nX, int nY, int j, int i) {
 
-        Point3D p =center;
-        List<Ray> lcorner=new LinkedList<>();
+        Point3D p = center;
+        List<Ray> lcorner = new LinkedList<>();
 
         //up
-        double yu = nY/(height*2);
+        double yu = nY / (height * 2);
         //right
-        double xr = nX/(width*2);
+        double xr = nX / (width * 2);
+
 
         //left up
-        if(!isZero(xr)){
+        if (!isZero(xr)) {
             p = center.add(vRight.scale(-xr));
         }
-        if(!isZero(yu)){
+        if (!isZero(yu)) {
             p = center.add(vUp.scale(yu));
         }
-        lcorner.add(new Ray(p0,p.subtract(p0)));
-        p=center;
+        lcorner.add(new Ray(p0, p.subtract(p0)));
+        p = center;
 
         //right up
         p = center.add(vRight.scale(xr));
         p = center.add(vUp.scale(yu));
-        lcorner.add(new Ray(p0,p.subtract(p0)));
-        p=center;
+        lcorner.add(new Ray(p0, p.subtract(p0)));
+        p = center;
 
         //left down
         p = center.add(vRight.scale(-xr));
         p = center.add(vUp.scale(-yu));
-        lcorner.add(new Ray(p0,p.subtract(p0)));
-        p=center;
+        lcorner.add(new Ray(p0, p.subtract(p0)));
+        p = center;
 
         //right down
         p = center.add(vRight.scale(xr));
         p = center.add(vUp.scale(-yu));
-        lcorner.add(new Ray(p0,p.subtract(p0)));
-        p=center;
+        lcorner.add(new Ray(p0, p.subtract(p0)));
+        p = center;
+
         //left middle
         p = center.add(vRight.scale(-xr));
         lcorner.add(new Ray(p0,p.subtract(p0)));
@@ -254,7 +256,6 @@ public class Camera {
 
         //right middle
         p = center.add(vRight.scale(xr));
-        p = center.add(vUp.scale(-yu));
         lcorner.add(new Ray(p0,p.subtract(p0)));
         p=center;
 
@@ -267,7 +268,12 @@ public class Camera {
         p = center.add(vUp.scale(-yu));
         lcorner.add(new Ray(p0,p.subtract(p0)));
         p=center;
+
+
         return lcorner;
+
+
+
     }
 
 

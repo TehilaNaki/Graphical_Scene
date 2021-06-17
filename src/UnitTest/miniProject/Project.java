@@ -12,60 +12,12 @@ import renderer.ImageWriter;
 import renderer.RayTracerBasic;
 import renderer.Render;
 import scene.Scene;
-
-
-import elements.*;
 import geometries.*;
 import primitives.*;
-import renderer.*;
-import scene.Scene;
+
 
 public class Project {
-    /*
-    private Scene scene = new Scene("project scene");
-    private Camera camera = new Camera(new Point3D(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
-            .setViewPlaneSize(200, 200).setDistance(900).setNumOfRays(50);
 
-
-    @Test
-    public void project3() {
-        scene.geometries.add(
-                new Polygon(new Point3D(-100.38423,60.40576,-30),new Point3D(-70.39239,100.02373,-30),new Point3D(-10.43208,30.47956,-30),new Point3D(-30.0967,21.44841,-30)) .setEmission(new Color(java.awt.Color.BLUE)) //
-                        .setMaterial(new Material().setkD(0.5).setkS(0.5).setnShininess(30)),
-                new Polygon(new Point3D(-60.38423,100.02373,0),new Point3D(-10.39239,105.02373,0),new Point3D(20.43208,31.47956,0),new Point3D(-8,31.47956,0)) .setEmission(new Color(java.awt.Color.BLUE)) //
-                        .setMaterial(new Material().setkD(0.5).setkS(0.5).setnShininess(30)),
-                new Polygon(new Point3D(0,100.02373,-70),new Point3D(35.39239,95.02373,-70),new Point3D(45,22,-70),new Point3D(25.43208,30.47956,-70)) .setEmission(new Color(java.awt.Color.BLUE)) //
-                        .setMaterial(new Material().setkD(0.5).setkT(0.5)),
-                new Sphere( new Point3D(-5, -5, 30), 30) //
-                        .setEmission(new Color(java.awt.Color.BLUE)) //
-                        .setMaterial(new Material().setkD(0.5).setkS(0.5).setnShininess(30)),
-                new Polygon(new Point3D(0,0.02373,-70),new Point3D(35.39239,-5.02373,-70),new Point3D(45,-80,-70),new Point3D(25.43208,-70.47956,-70)) .setEmission(new Color(java.awt.Color.BLUE)) //
-                        .setMaterial(new Material().setkD(0.5).setkT(0.5)),
-                new Polygon(new Point3D(1,0,0),new Point3D(4,0,0),new Point3D(-3.82224,2.51229,0)) .setEmission(new Color(java.awt.Color.BLUE)) //
-                        .setMaterial(new Material().setkD(0.5).setkT(0.5))
-               );
-
-       // new Polygon(new Point3D(40.0967,-40.44841,40),new Point3D(40.0967,-20.44841,60),new Point3D(40.0967,0.44841,40),new Point3D(40.0967,-20.44841,70),new Point3D(40.0967,-40.44841,80)));
-
-       // scene.lights.add( //
-         //       new SpotLight(new Color(400, 240, 0), new Vector(1, 1, -3), new Point3D(-40.39239,20.02373,100)) //
-                   //     .setkL(1E-5).setkQ(1.5E-7));
-
-       // scene.lights.add(new SpotLight(new Color(400, 240, 0), new Vector(1, 1, -3), new Point3D(-60.39239,20.02373,100)) //
-         //               .setkL(1E-5).setkQ(1.5E-7));
-        scene.lights.add( new PointLight(new Color(400, 240, 0), new Point3D(50.39239,-35,100)) //
-                        .setkL(1E-5).setkQ(1.5E-7));
-        scene.ambientLight =new AmbientLight(new Color(java.awt.Color.green), 0.15);
-        scene.background=new Color(java.awt.Color.PINK);
-
-        Render render = new Render(). //
-                setImageWriter(new ImageWriter("project", 400, 400)) //
-                .setCamera(camera)
-                .setMultithreading(5)
-                .setRayTracer(new RayTracerBasic(scene));
-        render.renderImage();
-        render.writeToImage();
-    }*/
     @Test
     public void project() {
         Camera camera = new Camera(
@@ -74,8 +26,7 @@ public class Project {
                 new Vector(0, 1, 0))
                 .setViewPlaneSize(200, 125)
                 .setDistance(800)
-                .setNumOfRays(50)
-                .setFocus(new Point3D (80, 0, 0),400);
+                .setNumOfRays(70);
 
         Scene scene = new Scene("Test Scene");
         setLights(scene);
@@ -86,7 +37,7 @@ public class Project {
                 .setMultithreading(3)
                 .setRayTracer(new RayTracerBasic(scene).setGlossinessRays(20));
 
-        int frames = 20;
+        int frames = 16;
         double angle = 360d / frames;
         double angleRadians = 2 * Math.PI / frames;
 
@@ -119,16 +70,13 @@ public class Project {
                         .setkL(0.004)
                         .setkQ(0.000006)
         );
-        scene.lights.add(new SpotLight(new Color(0,300,300), new Vector(1, 1, -2), new Point3D(-200, 100, 0)).setSpecularN(40) //
+        scene.lights.add(new SpotLight(new Color(0,250,350), new Vector(1, 1, -2), new Point3D(-200, 100, 0)).setSpecularN(40) //
                 .setkL(0.00000005).setkQ(0.000000005));
-        scene.lights.add(new SpotLight(new Color(0,300,300), new Vector(1, 1, -2), new Point3D(-200, 50, 0)).setSpecularN(20) //
+     scene.lights.add(new SpotLight(new Color(0,250,350), new Vector(1, 0.5, -2), new Point3D(-200, 50, 0)).setSpecularN(20) //
                 .setkL(0.00000005).setkQ(0.000000005));
-        scene.lights.add(new SpotLight(new Color(0,300,300), new Vector(1, 1, -2), new Point3D(-200, 55, 0)).setSpecularN(10) //
+        scene.lights.add(new SpotLight(new Color(0,250,350), new Vector(1, 1, -2), new Point3D(-200, 55, 0)).setSpecularN(10) //
                 .setkL(0.00000005).setkQ(0.000000005));
-        scene.lights.add(new SpotLight(new Color(0,300,300), new Vector(1, 1, -2), new Point3D(-200, 95, 0)).setSpecularN(30) //
-                .setkL(0.00000005).setkQ(0.000000005));
-        scene.lights.add(new SpotLight(new Color(0,300,300), new Vector(1, 1, -2), new Point3D(-200, 70, 0)).setSpecularN(25) //
-                .setkL(0.00000005).setkQ(0.000000005));
+
 
     }
 
@@ -189,9 +137,9 @@ public class Project {
                                 .setnShininess(50))
                 ,
                 new Cylinder(new Ray(
-                        new Point3D(-70, -66, 0),
+                        new Point3D(-70, -61, 0),
                         new Vector(1, 0, 0)),
-                        16, 140)
+                        11, 140)
                         .setEmission(new Color(0,51,102))
                         .setMaterial(new Material()
                                   .setkD(0.6).setkS(0.4).setkG(0.9)
@@ -331,10 +279,86 @@ public class Project {
 
         );
     }
+    @Test
+    public void project2() {
+        Camera camera = new Camera(
+                new Point3D(0, 0, 1000),
+                new Vector(0, 0, -1),
+                new Vector(0, 1, 0))
+                .setViewPlaneSize(225, 150)
+                .setDistance(800)
+                .setNumOfRays(10)
+                .setFocus(new Point3D(0, 0, 0), 500);
+
+        Scene scene = new Scene("Test Scene");
+        scene.lights.add(
+
+                new SpotLight(
+                        new Color(500, 500, 500),
+                        new Vector(-0.5, -1, -0.5),
+                        new Point3D(-50, 100, 100))
+                        .setkL(0.004)
+                        .setkQ(0.000006));
+        scene.geometries.add(
+                new Sphere(new Point3D(50, 0, 0), 50)
+                        .setEmission(new Color(5, 5, 5))
+                        .setMaterial(new Material()
+                                .setkR(1.0).setkG(0.8)),
+                new Cylinder(new Ray(
+                        new Point3D(-90, -35, 0),
+                        new Vector(60, 85, 0)),
+                        25, 100)
+                        .setEmission(new Color(100, 75, 0))
+                        .setMaterial(new Material()
+                                .setkD(0.6).setkD(0.4)
+                                .setnShininess(80)),
+                new Polygon(
+                        new Point3D(-100, -50, -150),
+                        new Point3D(-100, -50, 150),
+                        new Point3D(100, -50, 150),
+                        new Point3D(100, -50, -150))
+                        .setEmission(new Color(40, 40, 40))
+                        .setMaterial(new Material()
+                                .setkD(0.6).setkS(0.4)
+                                .setnShininess(50)),
+                new Polygon(
+                        new Point3D(-100, -50, -150),
+                        new Point3D(-100, 75, -150),
+                        new Point3D(100, 75, -150),
+                        new Point3D(100, -50, -150))
+                        .setEmission(new Color(40, 40, 40))
+                        .setMaterial(new Material()
+                                .setkD(0.6).setkS(0.4)
+                                .setnShininess(50))
+        );
+
+        int frames = 16;
+        double angle = 360d / frames;
+        double angleRadians = 2 * Math.PI / frames;
+
+        double radius = camera.getP0().subtract(Point3D.ZERO).length();
+
+        for (int i = 0; i < frames; i++) {
+            System.out.println("Start frame " + (i + 1));
+
+            camera.rotate(0, angle, 0);
+            camera.setP0(
+                    Math.sin(angleRadians * (i + 1)) * radius,
+                    0,
+                    Math.cos(angleRadians * (i + 1)) * radius
+            );
+
+            Render render = new Render()
+                    .setImageWriter(
+                            new ImageWriter("project/Project2." + (i + 1), 750, 500))
+                    .setCamera(camera)
+                    .setMultithreading(5)
+                    .setRayTracer(new RayTracerBasic(scene).setGlossinessRays(20));
+            render.renderImage();
+            render.writeToImage();
 
 
+        }
 
-
+    }
 }
-
-
