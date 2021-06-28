@@ -6,6 +6,8 @@ import java.util.MissingResourceException;
 /**
  * This class is handling a thread pool.
  * @param <T> the parameter for the thread's job
+ *
+ * @author TehilaNaki & MeravIzhaki
  */
 public class ThreadPool<T> {
     private static final int SPARE_THREADS = 2;

@@ -13,22 +13,29 @@ import static primitives.Util.isZero;
 
 /**
  * Gives interface for an object that is instersectable.
+ *
  * @author TehilaNaki & MeravIzhaki
  */
 public interface Intersectable {
 
 
     /**
-     *
+     * class of geometry's points
      */
     public static class GeoPoint {
+        /**
+         * Geometry on the scene
+         */
         public Geometry geometry;
+        /**
+         * Point on the geometry
+         */
         public Point3D point;
 
         /**
-         *
+         * Constructor with two parameters
          * @param geometry
-         * @param point
+         * @param point on the geometry
          */
         public GeoPoint(Geometry geometry, Point3D point) {
 
@@ -63,8 +70,8 @@ public interface Intersectable {
 
 
     /**
-     * @param ray
-     * @return
+     * @param ray from the camera
+     * @return list of geometry's points
      */
     List<GeoPoint> findGeoIntersections (Ray ray);
 

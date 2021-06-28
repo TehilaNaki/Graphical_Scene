@@ -2,6 +2,7 @@ package primitives;
 /**
  * Class Point3D is the basic class representing a point of Euclidean geometry in Cartesian
  * 3-Dimensional coordinate system.
+ *
  * @author TehilaNaki and MeravIzhaki
  */
 
@@ -104,18 +105,30 @@ public class Point3D {
                 ')';
     }
 
+    /**
+     * @return coordinate of x
+     */
     public double getX() {
         return x.coord;
     }
 
+    /**
+     * @return coordinate of y
+     */
     public double getY() {
         return y.coord;
     }
 
+    /**
+     * @return coordinate of z
+     */
     public double getZ() {
         return z.coord;
     }
 
+    /**
+     * @return the coordinates of the point are accurate up to 2 digits after the decimal point
+     */
     public Point3D cutTwoNumbers()
     {
         return new Point3D(Util.cutTwoNumber(x.coord), Util.cutTwoNumber(y.coord), Util.cutTwoNumber(z.coord));

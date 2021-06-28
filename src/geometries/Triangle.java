@@ -7,6 +7,7 @@ import java.util.List;
 
 /**
  * Triangle class represent a three-dimensional triangle- inherited from Polygon
+ *
  * @author TehilaNaki & MeravIzhaki
  */
 

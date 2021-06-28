@@ -11,12 +11,19 @@ import static primitives.Util.isZero;
 
 /**
  * Tube class represent a three-dimensional tube with Ray and radius
+ *
  * @author TehilaNaki & MeravIzhaki
  */
 
 public class Tube extends Geometry{
 
+    /**
+     * The axis ray of the tube
+     */
     protected final Ray axisRay;
+    /**
+     * The radius of the tube
+     */
     protected final double radius;
 
     /**
@@ -33,7 +40,6 @@ public class Tube extends Geometry{
         axisRay=axis;
         radius=r;
     }
-
 
 
     /**
@@ -85,7 +91,6 @@ public class Tube extends Geometry{
                 ", radius=" + radius +
                 '}';
     }
-
 
 
     @Override
@@ -154,4 +159,5 @@ public class Tube extends Geometry{
 
         return null;
     }
+
 }

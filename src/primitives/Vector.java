@@ -2,6 +2,7 @@ package primitives;
 /**
  * Class Vector is the basic class representing a vector
  * point3D is the head of the vector.
+ *
  * @author TehilaNaki and MeravIzhaki
  */
 
@@ -24,6 +25,15 @@ package primitives;
          newP.IsZero();
          head=newP;
      }
+
+    /**
+     * Constructor with parameter head
+     * @param h point
+     */
+    public Vector(Point3D h) {
+        h.IsZero();
+        this.head = h;
+    }
 
     /**
      * Creates a new point3d by a given 3 double and put it on the head of the vector.
@@ -219,8 +229,5 @@ package primitives;
         return head.toString();
     }
 
-    public Vector(Point3D h) {
-        h.IsZero();
-        this.head = h;
-    }
+
 }

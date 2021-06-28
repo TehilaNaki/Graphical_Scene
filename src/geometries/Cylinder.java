@@ -11,12 +11,23 @@ import static primitives.Util.isZero;
 
 /**
  * Cylinder class represent a three-dimensional cylinder- inherited from a tube and a height added to it
+ *
  * @author TehilaNaki & MeravIzhaki
  */
 public class Cylinder extends Tube {
 
+    /**
+     * Cylinder's height
+     */
     protected final double height;
-    protected final Plane bottomCap, topCap;
+    /**
+     * Cylinder's bottomCap.
+     */
+    protected final Plane bottomCap;
+    /**
+     * Cylinder's topCap.
+     */
+    protected final Plane topCap;
 
     /**
      * Creates a new cylinder by a given axis ray, radius and height.

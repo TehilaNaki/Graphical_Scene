@@ -9,11 +9,18 @@ import static primitives.Util.isZero;
 
 /**
  * Plane class represents plane with vector and point in 3D Cartesian coordinate
+ *
  * @author TehilaNaki & MeravIzhaki
  */
 public class Plane extends Geometry{
 
+    /**
+     * Point on the plane
+     */
     protected final Point3D q0;
+    /**
+     * Normal vector on the plane
+     */
     protected final Vector normal;
 
 
@@ -48,6 +55,7 @@ public class Plane extends Geometry{
         Vector u=p2.subtract(p3);
         normal=v.crossProduct(u).normalize();
     }
+
     /**
      * constructor get point and normal for Plane and emissionLight
      *
@@ -60,6 +68,7 @@ public class Plane extends Geometry{
         q0=point3D;
         this.normal=normal;
     }
+
     /**
      * Returns a point on the plane.
      * @return A shallow copy of the point.
@@ -78,6 +87,7 @@ public class Plane extends Geometry{
         return normal;
     }
 
+
     @Override
     public Vector getNormal(Point3D p)
     {
@@ -91,10 +101,6 @@ public class Plane extends Geometry{
                 ", normal=" + normal +
                 '}';
     }
-
-
-
-
 
     @Override
     public List<GeoPoint> findGeoIntersections(Ray ray) {
@@ -132,4 +138,5 @@ public class Plane extends Geometry{
         //Ray crosses the plane
         return List.of(new GeoPoint(this,P));
     }
+
 }

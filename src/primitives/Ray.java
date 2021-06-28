@@ -16,8 +16,15 @@ import static primitives.Util.isZero;
  */
 public class Ray {
 
+    /**
+     * Point of the ray
+     */
     private final Point3D p0;
+    /**
+     * Direction of the ray
+     */
     private final Vector dir;
+
     private static final double DELTA = 0.1;
 
     /**
@@ -51,6 +58,7 @@ public class Ray {
         else
             this.p0=p0;
     }
+
     /**
      * Returns a point of the ray.
      *
@@ -69,14 +77,6 @@ public class Ray {
         return dir;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
-        if (!(obj instanceof Ray)) return false;
-        Ray other = (Ray) obj;
-        return this.p0.equals(other.p0) && this.dir.equals(other.dir);
-    }
 
     /**
      * Gets a point on the ray by calculating p0 + t*v.
@@ -94,15 +94,6 @@ public class Ray {
             return p0;
         }
     }
-
-    @Override
-    public String toString() {
-        return "Ray{" +
-                "p0=" + p0 +
-                ", direction=" + dir +
-                '}';
-    }
-
 
 
     /**
@@ -134,9 +125,9 @@ public class Ray {
     }
 
     /**
-     *
-     * @param intersections
-     * @return
+     * Find the closest geometry point
+     * @param intersections List of geometries points
+     * @return geometry point
      */
     public GeoPoint findClosestGeoPoint(List<GeoPoint> intersections){
         double minDistance = Double.MAX_VALUE;
@@ -157,6 +148,23 @@ public class Ray {
             }
         }
         return closePoint;
+    }
+
+    @Override
+    public String toString() {
+        return "Ray{" +
+                "p0=" + p0 +
+                ", direction=" + dir +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (!(obj instanceof Ray)) return false;
+        Ray other = (Ray) obj;
+        return this.p0.equals(other.p0) && this.dir.equals(other.dir);
     }
 }
 

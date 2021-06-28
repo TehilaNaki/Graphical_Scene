@@ -15,7 +15,13 @@ import static primitives.Util.alignZero;
  */
 public class Sphere extends Geometry {
 
+    /**
+     * Center point on the sphere
+     */
     protected final Point3D center;
+    /**
+     * Radius of the sphere
+     */
     protected final double radius;
 
     /**
@@ -65,7 +71,6 @@ public class Sphere extends Geometry {
     }
 
 
-
     @Override
     public List<GeoPoint> findGeoIntersections(Ray ray) {
         Point3D p0 = ray.getPoint();
@@ -101,4 +106,5 @@ public class Sphere extends Geometry {
 
         return null;
     }
+
 }

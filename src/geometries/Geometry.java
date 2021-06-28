@@ -16,15 +16,24 @@ public abstract class Geometry implements Intersectable{
      */
     protected Color emission =Color.BLACK;
 
+    /**
+     * The material of the geometry
+     */
     private Material material=new Material();
 
+    /**
+     * Default constructor
+     */
+    public Geometry(){ }
 
-    public Geometry(){
-
-    }
+    /**
+     * Constructor with two parameters
+     * @param emission of geometry
+     * @param material of geometry
+     */
     public Geometry(Color emission, Material material) {
-        emission = emission;
-        material = material;
+       this.emission = emission;
+        this.material = material;
     }
     /**
     * @param point on geometrics object
@@ -61,7 +70,6 @@ public abstract class Geometry implements Intersectable{
 
 
     /**
-     *
      * @param emission set the emission
      * @return the geometry
      */

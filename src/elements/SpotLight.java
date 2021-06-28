@@ -33,12 +33,6 @@ public class SpotLight extends PointLight{
         this.direction=direction.normalized();
     }
 
-    @Override
-    public Color getIntensity(Point3D p) {
-        double factor=Math.max(0,direction.dotProduct(getL(p)));
-        return super.getIntensity(p).scale(factor);
-    }
-
 
     /**
      * @param specularN specular component
@@ -54,5 +48,11 @@ public class SpotLight extends PointLight{
      */
     public double getSpecularN() {
         return specularN;
+    }
+
+    @Override
+    public Color getIntensity(Point3D p) {
+        double factor=Math.max(0,direction.dotProduct(getL(p)));
+        return super.getIntensity(p).scale(factor);
     }
 }

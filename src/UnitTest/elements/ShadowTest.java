@@ -36,7 +36,7 @@ public class ShadowTest {
                         .setkL(1E-5).setkQ(1.5E-7));
 
         Render render = new Render(). //
-                setImageWriter(new ImageWriter("shadowSphereTriangleInitial", 400, 400)) //
+                setImageWriter(new ImageWriter("shadow/shadowSphereTriangleInitial", 400, 400)) //
                 .setCamera(camera)
                 .setMultithreading(5)
                 .setRayTracer(new RayTracerBasic(scene));
@@ -59,7 +59,7 @@ public class ShadowTest {
                         .setkL(1E-5).setkQ(1.5E-7));
 
         Render render = new Render(). //
-                setImageWriter(new ImageWriter("shadowSphereTriangleInitial1", 400, 400)) //
+                setImageWriter(new ImageWriter("shadow/shadowSphereTriangleInitial1", 400, 400)) //
                 .setCamera(camera) //
                 .setMultithreading(5)
                 .setRayTracer(new RayTracerBasic(scene));
@@ -82,7 +82,7 @@ public class ShadowTest {
                         .setkL(1E-5).setkQ(1.5E-7));
 
         Render render = new Render(). //
-                setImageWriter(new ImageWriter("shadowSphereTriangleInitial2", 400, 400)) //
+                setImageWriter(new ImageWriter("shadow/shadowSphereTriangleInitial2", 400, 400)) //
                 .setCamera(camera) //
                 .setMultithreading(5)
                 .setRayTracer(new RayTracerBasic(scene));
@@ -105,7 +105,7 @@ public class ShadowTest {
                         .setkL(1E-5).setkQ(1.5E-7));
 
         Render render = new Render(). //
-                setImageWriter(new ImageWriter("shadowSphereTriangleInitial3", 400, 400)) //
+                setImageWriter(new ImageWriter("shadow/shadowSphereTriangleInitial3", 400, 400)) //
                 .setCamera(camera) //
                 .setMultithreading(5)
                 .setRayTracer(new RayTracerBasic(scene));
@@ -128,7 +128,7 @@ public class ShadowTest {
                         .setkL(1E-5).setkQ(1.5E-7));
 
         Render render = new Render(). //
-                setImageWriter(new ImageWriter("shadowSphereTriangleInitial4", 400, 400)) //
+                setImageWriter(new ImageWriter("shadow/shadowSphereTriangleInitial4", 400, 400)) //
                 .setCamera(camera) //
                 .setMultithreading(5)
                 .setRayTracer(new RayTracerBasic(scene));
@@ -158,7 +158,7 @@ public class ShadowTest {
                         .setkL(4E-4).setkQ(2E-5));
 
         Render render = new Render() //
-                .setImageWriter(new ImageWriter("shadowTrianglesSphere", 600, 600)) //
+                .setImageWriter(new ImageWriter("shadow/shadowTrianglesSphere", 600, 600)) //
                 .setCamera(camera) //
                 .setMultithreading(5)
                 .setRayTracer(new RayTracerBasic(scene));
