@@ -10,7 +10,6 @@ import java.util.List;
 
 /**
  * Class scene
- *
  * @author TehilaNaki & MeravIzhaki
  */
 public class Scene {

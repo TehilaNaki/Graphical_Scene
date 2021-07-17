@@ -21,19 +21,13 @@ public class DepthOfField {
     @Test
     public void depth() {
         Camera camera = new Camera(new Point3D(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
-                .setViewPlaneSize(150, 150).setDistance(1000).setNumOfRays(0).setFocus(new Point3D(0,0,0),200);
+                .setViewPlaneSize(150, 150).setDistance(1000).setNumOfRays(3).setFocus(new Point3D(0,50,0),200);
 
         scene.geometries.add( //
                 new Sphere( new Point3D(-20, -10, -50),50) //
                         .setEmission(new Color(java.awt.Color.BLUE)) //
                         .setMaterial(new Material().setkD(0.4).setkS(0.3).setnShininess(100).setkT(0.3)),
                 new Sphere( new Point3D(-20, -10, -50),30) //
-                        .setEmission(new Color(java.awt.Color.RED)) //
-                        .setMaterial(new Material().setkD(0.5).setkS(0.5).setnShininess(100)),
-                new Sphere( new Point3D(30, 70, -200),30) //
-                        .setEmission(new Color(java.awt.Color.BLUE)) //
-                        .setMaterial(new Material().setkD(0.4).setkS(0.3).setnShininess(100).setkT(0.3)),
-                new Sphere( new Point3D(30, 70, -200),10) //
                         .setEmission(new Color(java.awt.Color.RED)) //
                         .setMaterial(new Material().setkD(0.5).setkS(0.5).setnShininess(100)));
         scene.lights.add( //
